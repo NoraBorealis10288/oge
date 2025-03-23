@@ -61,8 +61,6 @@
 /home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/lxyhqq2f0z-h1s4sie4z3.gz
 /home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/uvr8jh83ax-63fj8s7r0e.gz
 /home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/uzjoliq0lo-0j3bgjxly4.gz
-/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-goaktyyxr4.gz
-/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-goaktyyxr4.gz
 /home/nora/repos/oge/oge/obj/Debug/net9.0/staticwebassets.build.json
 /home/nora/repos/oge/oge/obj/Debug/net9.0/staticwebassets.development.json
 /home/nora/repos/oge/oge/obj/Debug/net9.0/staticwebassets.build.endpoints.json
@@ -77,3 +75,7 @@
 /home/nora/repos/oge/oge/obj/Debug/net9.0/oge.pdb
 /home/nora/repos/oge/oge/obj/Debug/net9.0/oge.genruntimeconfig.cache
 /home/nora/repos/oge/oge/obj/Debug/net9.0/ref/oge.dll
+/home/nora/repos/oge/oge/obj/Debug/net9.0/oge.sourcelink.json
+/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/Components/Layout/InfoLayout.razor.rz.scp.css
+/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-2sr57wso4l.gz
+/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-2sr57wso4l.gz

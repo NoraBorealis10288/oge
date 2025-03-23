@@ -552,17 +552,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"notf2xhcfb"},{"Name":"integrity","Value":"sha256-\u002BUW802wgVfnjaSbdwyHLlU7AVplb0WToOlvN1CnzIac="},{"Name":"label","Value":"_content/oge/lib/bootstrap/dist/js/bootstrap.js"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"145401"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022\u002BUW802wgVfnjaSbdwyHLlU7AVplb0WToOlvN1CnzIac=\u0022"},{"Name":"Last-Modified","Value":"Sat, 22 Mar 2025 04:24:33 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/oge/oge.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\oge.goaktyyxr4.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/oge/oge.2sr57wso4l.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\oge.2sr57wso4l.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-8Cfvzu4DiKL/lxawLFK645l04Bf/qBK92KNZ1imcSqM="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5748"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228Cfvzu4DiKL/lxawLFK645l04Bf/qBK92KNZ1imcSqM=\u0022"},{"Name":"Last-Modified","Value":"Sat, 22 Mar 2025 04:25:23 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"2sr57wso4l"},{"Name":"integrity","Value":"sha256-4sIvITR0nrgSe3DB8JzqXFD6jNKUhdSw8tVGNkQyC8E="},{"Name":"label","Value":"_content/oge/oge.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7887"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00224sIvITR0nrgSe3DB8JzqXFD6jNKUhdSw8tVGNkQyC8E=\u0022"},{"Name":"Last-Modified","Value":"Sun, 23 Mar 2025 00:28:14 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/oge/oge.goaktyyxr4.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\oge.goaktyyxr4.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/oge/oge.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\oge.2sr57wso4l.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"goaktyyxr4"},{"Name":"integrity","Value":"sha256-8Cfvzu4DiKL/lxawLFK645l04Bf/qBK92KNZ1imcSqM="},{"Name":"label","Value":"_content/oge/oge.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5748"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228Cfvzu4DiKL/lxawLFK645l04Bf/qBK92KNZ1imcSqM=\u0022"},{"Name":"Last-Modified","Value":"Sat, 22 Mar 2025 04:25:23 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-4sIvITR0nrgSe3DB8JzqXFD6jNKUhdSw8tVGNkQyC8E="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7887"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00224sIvITR0nrgSe3DB8JzqXFD6jNKUhdSw8tVGNkQyC8E=\u0022"},{"Name":"Last-Modified","Value":"Sun, 23 Mar 2025 00:28:14 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

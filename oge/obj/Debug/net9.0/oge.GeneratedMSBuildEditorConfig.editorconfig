@@ -24,8 +24,12 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nora/repos/oge/oge/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Db3VudGVyLnJhem9y
+[/home/nora/repos/oge/oge/Components/Pages/DoorActivity.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Eb29yQWN0aXZpdHkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nora/repos/oge/oge/Components/Pages/DoWActivity.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Eb1dBY3Rpdml0eS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nora/repos/oge/oge/Components/Pages/Error.razor]
@@ -36,8 +40,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nora/repos/oge/oge/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9XZWF0aGVyLnJhem9y
+[/home/nora/repos/oge/oge/Components/Pages/LongestInactivity.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb25nZXN0SW5hY3Rpdml0eS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nora/repos/oge/oge/Components/Pages/Timeranges.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9UaW1lcmFuZ2VzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nora/repos/oge/oge/Components/Pages/UniqueAccesses.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9VbmlxdWVBY2Nlc3Nlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nora/repos/oge/oge/Components/Pages/UserActivity.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Vc2VyQWN0aXZpdHkucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nora/repos/oge/oge/Components/Routes.razor]
@@ -47,6 +63,10 @@ build_metadata.AdditionalFiles.CssScope =
 [/home/nora/repos/oge/oge/Components/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nora/repos/oge/oge/Components/Layout/InfoLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvSW5mb0xheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-whljm9hqjh
 
 [/home/nora/repos/oge/oge/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
