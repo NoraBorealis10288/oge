@@ -77,5 +77,5 @@
 /home/nora/repos/oge/oge/obj/Debug/net9.0/ref/oge.dll
 /home/nora/repos/oge/oge/obj/Debug/net9.0/oge.sourcelink.json
 /home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/Components/Layout/InfoLayout.razor.rz.scp.css
-/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-ch8zmpz41o.gz
-/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-ch8zmpz41o.gz
+/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-hxwboolzg3.gz
+/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-hxwboolzg3.gz
