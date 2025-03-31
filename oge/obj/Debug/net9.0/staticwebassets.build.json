@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wHFoe5kTGvXM58r1cjRbh/JTLK3Q/SJ3fhEwbXqqnFc=",
+  "Hash": "6nWgv1Is8hhlBlhDhoywga+2CuCxn3r3Yhq2zVvzYsU=",
   "Source": "oge",
   "BasePath": "_content/oge",
   "Mode": "Default",
@@ -164,12 +164,12 @@
       "OriginalItemSpec": "/home/nora/repos/oge/oge/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Identity": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-kn55rc8ppb.gz",
+      "Identity": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-owxxu6boty.gz",
       "SourceId": "oge",
       "SourceType": "Computed",
       "ContentRoot": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/oge",
-      "RelativePath": "oge#[.{fingerprint=kn55rc8ppb}]?.styles.css.gz",
+      "RelativePath": "oge#[.{fingerprint=owxxu6boty}]?.styles.css.gz",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Alternative",
@@ -178,8 +178,8 @@
       "RelatedAsset": "/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/bundle/oge.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "82aggagiyo",
-      "Integrity": "8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=",
+      "Fingerprint": "sy2k7k6i3k",
+      "Integrity": "/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/bundle/oge.styles.css"
@@ -395,12 +395,12 @@
       "OriginalItemSpec": "/home/nora/repos/oge/oge/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Identity": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-kn55rc8ppb.gz",
+      "Identity": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-owxxu6boty.gz",
       "SourceId": "oge",
       "SourceType": "Computed",
       "ContentRoot": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/oge",
-      "RelativePath": "oge#[.{fingerprint=kn55rc8ppb}]!.bundle.scp.css.gz",
+      "RelativePath": "oge#[.{fingerprint=owxxu6boty}]!.bundle.scp.css.gz",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Alternative",
@@ -409,8 +409,8 @@
       "RelatedAsset": "/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/projectbundle/oge.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "82aggagiyo",
-      "Integrity": "8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=",
+      "Fingerprint": "sy2k7k6i3k",
+      "Integrity": "/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/projectbundle/oge.bundle.scp.css"
@@ -1018,8 +1018,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "kn55rc8ppb",
-      "Integrity": "4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=",
+      "Fingerprint": "owxxu6boty",
+      "Integrity": "6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/bundle/oge.styles.css"
@@ -1039,8 +1039,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "kn55rc8ppb",
-      "Integrity": "4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=",
+      "Fingerprint": "owxxu6boty",
+      "Integrity": "6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/projectbundle/oge.bundle.scp.css"
@@ -15507,12 +15507,12 @@
     },
     {
       "Route": "oge.bundle.scp.css",
-      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-kn55rc8ppb.gz",
+      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-owxxu6boty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000401284109"
+          "Quality": "0.000408329931"
         }
       ],
       "ResponseHeaders": [
@@ -15522,15 +15522,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2491"
+          "Value": "2448"
         },
         {
           "Name": "ETag",
-          "Value": "\"8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=\""
+          "Value": "\"/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15550,13 +15550,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=\""
+          "Value": "W/\"6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM="
+          "Value": "sha256-6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM="
         }
       ]
     },
@@ -15571,7 +15571,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9575"
+          "Value": "9346"
         },
         {
           "Name": "Content-Type",
@@ -15579,11 +15579,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=\""
+          "Value": "\"6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15593,13 +15593,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM="
+          "Value": "sha256-6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM="
         }
       ]
     },
     {
       "Route": "oge.bundle.scp.css.gz",
-      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-kn55rc8ppb.gz",
+      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-owxxu6boty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -15608,7 +15608,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2491"
+          "Value": "2448"
         },
         {
           "Name": "Content-Type",
@@ -15616,11 +15616,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=\""
+          "Value": "\"/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15638,18 +15638,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw="
+          "Value": "sha256-/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4="
         }
       ]
     },
     {
-      "Route": "oge.kn55rc8ppb.bundle.scp.css",
-      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-kn55rc8ppb.gz",
+      "Route": "oge.owxxu6boty.bundle.scp.css",
+      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-owxxu6boty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000401284109"
+          "Quality": "0.000408329931"
         }
       ],
       "ResponseHeaders": [
@@ -15659,15 +15659,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2491"
+          "Value": "2448"
         },
         {
           "Name": "ETag",
-          "Value": "\"8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=\""
+          "Value": "\"/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15687,13 +15687,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=\""
+          "Value": "W/\"6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kn55rc8ppb"
+          "Value": "owxxu6boty"
         },
         {
           "Name": "label",
@@ -15701,12 +15701,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM="
+          "Value": "sha256-6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM="
         }
       ]
     },
     {
-      "Route": "oge.kn55rc8ppb.bundle.scp.css",
+      "Route": "oge.owxxu6boty.bundle.scp.css",
       "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/projectbundle/oge.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -15716,7 +15716,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9575"
+          "Value": "9346"
         },
         {
           "Name": "Content-Type",
@@ -15724,11 +15724,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=\""
+          "Value": "\"6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15738,7 +15738,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kn55rc8ppb"
+          "Value": "owxxu6boty"
         },
         {
           "Name": "label",
@@ -15746,13 +15746,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM="
+          "Value": "sha256-6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM="
         }
       ]
     },
     {
-      "Route": "oge.kn55rc8ppb.bundle.scp.css.gz",
-      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-kn55rc8ppb.gz",
+      "Route": "oge.owxxu6boty.bundle.scp.css.gz",
+      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-owxxu6boty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -15761,7 +15761,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2491"
+          "Value": "2448"
         },
         {
           "Name": "Content-Type",
@@ -15769,11 +15769,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=\""
+          "Value": "\"/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15791,7 +15791,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kn55rc8ppb"
+          "Value": "owxxu6boty"
         },
         {
           "Name": "label",
@@ -15799,18 +15799,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw="
+          "Value": "sha256-/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4="
         }
       ]
     },
     {
-      "Route": "oge.kn55rc8ppb.styles.css",
-      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-kn55rc8ppb.gz",
+      "Route": "oge.owxxu6boty.styles.css",
+      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-owxxu6boty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000401284109"
+          "Quality": "0.000408329931"
         }
       ],
       "ResponseHeaders": [
@@ -15820,15 +15820,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2491"
+          "Value": "2448"
         },
         {
           "Name": "ETag",
-          "Value": "\"8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=\""
+          "Value": "\"/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15848,13 +15848,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=\""
+          "Value": "W/\"6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kn55rc8ppb"
+          "Value": "owxxu6boty"
         },
         {
           "Name": "label",
@@ -15862,12 +15862,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM="
+          "Value": "sha256-6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM="
         }
       ]
     },
     {
-      "Route": "oge.kn55rc8ppb.styles.css",
+      "Route": "oge.owxxu6boty.styles.css",
       "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/bundle/oge.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -15877,7 +15877,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9575"
+          "Value": "9346"
         },
         {
           "Name": "Content-Type",
@@ -15885,11 +15885,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=\""
+          "Value": "\"6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15899,7 +15899,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kn55rc8ppb"
+          "Value": "owxxu6boty"
         },
         {
           "Name": "label",
@@ -15907,13 +15907,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM="
+          "Value": "sha256-6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM="
         }
       ]
     },
     {
-      "Route": "oge.kn55rc8ppb.styles.css.gz",
-      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-kn55rc8ppb.gz",
+      "Route": "oge.owxxu6boty.styles.css.gz",
+      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-owxxu6boty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -15922,7 +15922,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2491"
+          "Value": "2448"
         },
         {
           "Name": "Content-Type",
@@ -15930,11 +15930,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=\""
+          "Value": "\"/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15952,7 +15952,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kn55rc8ppb"
+          "Value": "owxxu6boty"
         },
         {
           "Name": "label",
@@ -15960,18 +15960,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw="
+          "Value": "sha256-/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4="
         }
       ]
     },
     {
       "Route": "oge.styles.css",
-      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-kn55rc8ppb.gz",
+      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-owxxu6boty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000401284109"
+          "Quality": "0.000408329931"
         }
       ],
       "ResponseHeaders": [
@@ -15981,15 +15981,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2491"
+          "Value": "2448"
         },
         {
           "Name": "ETag",
-          "Value": "\"8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=\""
+          "Value": "\"/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16009,13 +16009,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=\""
+          "Value": "W/\"6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM="
+          "Value": "sha256-6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM="
         }
       ]
     },
@@ -16030,7 +16030,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9575"
+          "Value": "9346"
         },
         {
           "Name": "Content-Type",
@@ -16038,11 +16038,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM=\""
+          "Value": "\"6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16052,13 +16052,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-4BYZ4zM3BHV+1rJZToMVgUfqR2w3o//6rg2FBapGDmM="
+          "Value": "sha256-6I/ZIxBMLzsbGSkJci19bWA+HXiaX9yBb/7Ya+wVgCM="
         }
       ]
     },
     {
       "Route": "oge.styles.css.gz",
-      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-kn55rc8ppb.gz",
+      "AssetFile": "/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-owxxu6boty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -16067,7 +16067,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2491"
+          "Value": "2448"
         },
         {
           "Name": "Content-Type",
@@ -16075,11 +16075,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw=\""
+          "Value": "\"/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 18:05:41 GMT"
+          "Value": "Sat, 29 Mar 2025 22:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16097,7 +16097,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8I4DWQs0A1tk4lj6xkhUrWB0kqgAvthUdcTIfmlBldw="
+          "Value": "sha256-/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4="
         }
       ]
     }

@@ -1,4 +1,7 @@
-﻿ <div class="nav" onclick="document.querySelector('.navbar-toggler').click()">
+﻿@rendermode InteractiveServer
+@inject NavigationManager navman;
+
+<div class="nav" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="nav flex-column">
 
         <div class="nav-item px-3">
@@ -44,7 +47,15 @@
         </div>
 
         <div class="upload-button">
-            <InputFile/>
+            <InputFile style="opacity: 0; cursor: pointer;" OnChange="UploadFileAsync" accept=".csv" href=""/>
         </div>
     </nav>
 </div>
+
+@code {
+    public async Task UploadFileAsync(InputFileChangeEventArgs e) {
+        var file = e.File;
+        await Shared.FileUploadedAsync(file);
+        navman.NavigateTo(navman.Uri, true);
+    }
+}
