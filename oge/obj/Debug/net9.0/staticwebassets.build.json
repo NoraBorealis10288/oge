@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6nWgv1Is8hhlBlhDhoywga+2CuCxn3r3Yhq2zVvzYsU=",
+  "Hash": "zqU2KzYdsda4bkVQ3lSwNnqHoU+MEQSUgMuJ++CDMQ0=",
   "Source": "oge",
   "BasePath": "_content/oge",
   "Mode": "Default",
@@ -2010,6 +2010,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Identity": "/home/nora/repos/oge/oge/wwwroot/ogelogo.png",
+      "SourceId": "oge",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nora/repos/oge/oge/wwwroot/",
+      "BasePath": "_content/oge",
+      "RelativePath": "ogelogo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "e8owper7u2",
+      "Integrity": "rmOdxEsdpX88946mERVOdPTC7vaLiPmQ3A617x7/mWY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/ogelogo.png"
     }
   ],
   "Endpoints": [
@@ -16098,6 +16119,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-/JyrWNSrtJ2DYOQSkUSvSU/bChljIvl9hRyvRuYuqb4="
+        }
+      ]
+    },
+    {
+      "Route": "ogelogo.e8owper7u2.png",
+      "AssetFile": "/home/nora/repos/oge/oge/wwwroot/ogelogo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "29678"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rmOdxEsdpX88946mERVOdPTC7vaLiPmQ3A617x7/mWY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 31 Mar 2025 18:51:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e8owper7u2"
+        },
+        {
+          "Name": "label",
+          "Value": "ogelogo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rmOdxEsdpX88946mERVOdPTC7vaLiPmQ3A617x7/mWY="
+        }
+      ]
+    },
+    {
+      "Route": "ogelogo.png",
+      "AssetFile": "/home/nora/repos/oge/oge/wwwroot/ogelogo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "29678"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rmOdxEsdpX88946mERVOdPTC7vaLiPmQ3A617x7/mWY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 31 Mar 2025 18:51:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rmOdxEsdpX88946mERVOdPTC7vaLiPmQ3A617x7/mWY="
         }
       ]
     }
