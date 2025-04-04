@@ -5,6 +5,52 @@
 
 <h1>Most Active Day of the Week</h1>
 
+<div class="content">
+    @if (Shared.uploadStatus.Equals("file")) {
+        Init();
+        foreach (KeyValuePair<int,List<ReaderEvent>> kvp in userDict) {
+            Console.WriteLine($"{kvp.Key}, {kvp.Value.Count}");
+        }
+        <p>Sunday: @userDict[0].Count</p>
+        <p>Monday: @userDict[1].Count</p>
+        <p>Tuesday: @userDict[2].Count</p>
+        <p>Wednesday: @userDict[3].Count</p>
+        <p>Thursday: @userDict[4].Count</p>
+        <p>Friday: @userDict[5].Count</p>
+        <p>Saturday: @userDict[6].Count</p>
+    }
+</div>
+
+<style>
+
+hr {
+    border-top: 5px solid #000;
+    opacity: 1;
+    width: 80%;
+    margin: auto;
+}
+
+.title {
+    font-size: 70px;
+    font-family: 'Courier New', monospace;
+}
+
+.content {
+    text-align: center;
+}
+
+</style>
+
 @code {
-    
+    SortedDictionary<int,List<ReaderEvent>> userDict = new SortedDictionary<int, List<ReaderEvent>>();
+    public void Init() {
+        for (int i=0;i<7;i++) {
+            userDict.Add(i, new List<ReaderEvent>());
+        }
+        foreach(ReaderEvent reader in Shared.fileList) {
+            int dayofweek = (int)( DateTime.Parse(reader.GetTimestamp()).DayOfWeek );
+            Console.WriteLine(dayofweek);
+            userDict[dayofweek].Add(reader);
+        }
+    }
 }

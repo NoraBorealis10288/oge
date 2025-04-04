@@ -81,13 +81,11 @@ public class ReaderEvent {
         column5 = temparray[4];
         column6 = temparray[5];
     }
-    public int GetID() {
-        return Int32.Parse(column5 + column6);
-    }
 
-    public string GetHash() {
-        return column4;
-    }
+    public string GetTimestamp() { return column1; }
+    public string GetHash() { return column4; }
+
+    public int GetID() { return Int32.Parse(column5 + column6); }
 
     public string GetName() { return column2; }
     public override string ToString() {
