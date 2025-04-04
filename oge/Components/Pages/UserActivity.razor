@@ -4,7 +4,77 @@
 <PageTitle>Info Page</PageTitle>
 
 <h1>Most Active Users</h1>
+<div class="content">
+    @if (Shared.uploadStatus.Equals("file")) {
+        Init();
+        foreach ((string,int) tuple in data)
+        {
+            Console.Write($"{tuple.Item1},{tuple.Item2}\n");
+        }
+        <h4>Top @numDoors Most Active User</h4>
+        @for (int i=1;i<=numDoors;i++) {
+            <div>@data[data.Count-i].Item1 , @data[data.Count-i].Item2</div>
+        }
+    }
+</div>
+
+<style>
+
+hr {
+    border-top: 5px solid #000;
+    opacity: 1;
+    width: 80%;
+    margin: auto;
+}
+
+.title {
+    font-size: 70px;
+    font-family: 'Courier New', monospace;
+}
+
+.content {
+    text-align: center;
+}
+
+</style>
 
 @code {
+    Dictionary<string,List<ReaderEvent>> userDict = new Dictionary<string, List<ReaderEvent>>();
+    List<(string hash, int numAccesses)> data = new List<(string hash, int numAccesses)>();
+    int numDoors {get; set;} = 10;
+    public void Init() {
+        InitializeDictByUser();
+        Sort();
+    }
 
+    public void InitializeDictByUser() {
+        foreach(ReaderEvent reader in Shared.fileList) {
+            if (userDict.ContainsKey(reader.GetHash())) {
+                userDict[reader.GetHash()].Add(reader);
+            } else {
+                userDict.Add(reader.GetHash(), new List<ReaderEvent>());
+                userDict[reader.GetHash()].Add(reader);
+            }
+        }
+    }
+
+    public void Sort() {
+        foreach (KeyValuePair<string,System.Collections.Generic.List<ReaderEvent>> kvp in userDict) {
+            data.Add((kvp.Key,kvp.Value.Count));
+        }
+        (string hash,int numAccesses) temp;
+
+        for (int j=0; j<=data.Count-2; j++)
+        {
+            for (int i=0; i<=data.Count-2; i++)
+            {
+                if (data[i].numAccesses > data[i+1].numAccesses)
+                {
+                    temp = (data[i+1].hash,data[i+1].numAccesses);
+                    data[i+1] = (data[i].hash,data[i].numAccesses);
+                    data[i] = (temp.hash,temp.numAccesses);
+                }
+            }
+        }
+    }
 }

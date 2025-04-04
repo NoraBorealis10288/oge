@@ -13,12 +13,10 @@
         {
             Console.Write($"{tuple.Item1},{tuple.Item2}\n");
         }
-        <h4>Top 5 Most Accessed doors</h4>
-        <div>@data[data.Count-1].Item1 , @data[data.Count-1].Item2</div>
-        <div>@data[data.Count-2].Item1 , @data[data.Count-2].Item2</div>
-        <div>@data[data.Count-3].Item1 , @data[data.Count-3].Item2</div>
-        <div>@data[data.Count-4].Item1 , @data[data.Count-4].Item2</div>
-        <div>@data[data.Count-5].Item1 , @data[data.Count-5].Item2</div>
+        <h4>Top @numDoors Most Active Doors</h4>
+        @for (int i=1;i<=numDoors;i++) {
+            <div>@data[data.Count-i].Item1 , @data[data.Count-i].Item2</div>
+        }
     }
 </div>
 
@@ -44,6 +42,7 @@ hr {
 
 @code {
     List<(int id,int numAccesses)> data = new List<(int id,int numAccesses)>();
+    int numDoors {get; set;} = 10;
     public void Sort() {
         foreach (KeyValuePair<int,System.Collections.Generic.List<ReaderEvent>> kvp in Shared.dict) {
             data.Add((kvp.Key,kvp.Value.Count));
