@@ -6,7 +6,9 @@
 <h1>Longest Inactivity</h1>
 
 <div class="content">
-
+    @if (Shared.uploadStatus.Equals("file")) {
+        Init();
+    }
 </div>
 
 <style>
@@ -30,5 +32,35 @@ hr {
 </style>
 
 @code {
+    OrderedDictionary<int,List<DateTime>> times = new OrderedDictionary<int, List<DateTime>>();
+    List<(int id,int numAccesses)> data = new List<(int id,int numAccesses)>();
+    
+    // Initialize local dictionary with just the timestamp of each access, grouped by which door they were from
+    public void Init() {
+        var templist = new List<string>();
+        foreach (KeyValuePair<int,System.Collections.Generic.List<ReaderEvent>> kvp in Shared.dict) {
+            templist.Clear();
+            foreach (ReaderEvent reader in kvp.Value) {
+                templist.Add(reader.GetTimestamp());
+            }
+            times.Add(kvp.Key,Sort(templist));
+        }
+    }
 
+    public List<DateTime> Sort(List<string> input) {
+        var output = new List<DateTime>();
+        foreach (string timestamp in input) {
+            output.Add(DateTime.Parse(timestamp));
+        }
+        output.Sort((x, y) => DateTime.Compare(x, y));
+
+        // Print all datetimes to make sure they are in order
+        Console.WriteLine("DEBUG STATEMENT START: DATETIME SORT CHECK");
+        foreach (DateTime time in output) {
+            Console.WriteLine(time.ToString());
+        }
+        Console.WriteLine("DEBUG STATEMENT END: DATETIME SORT CHECK");
+
+        return output;
+    }
 }
