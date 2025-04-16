@@ -8,6 +8,13 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Init();
+        foreach(LongestGap val in data) {
+            Console.WriteLine(val);
+        }
+        <h4>Top 10 Longest Gaps</h4>
+        for (int i=0; i<10; i++) {
+            <div>@data[i].ToString()</div>
+        }
     }
 </div>
 
@@ -32,9 +39,8 @@ hr {
 </style>
 
 @code {
-    OrderedDictionary<int,List<DateTime>> times = new OrderedDictionary<int, List<DateTime>>();
-    List<(int id,int numAccesses)> data = new List<(int id,int numAccesses)>();
-    
+    Dictionary<int,List<DateTime>> times = new Dictionary<int, List<DateTime>>();
+    List<LongestGap> data;
     // Initialize local dictionary with just the timestamp of each access, grouped by which door they were from
     public void Init() {
         var templist = new List<string>();
@@ -43,11 +49,12 @@ hr {
             foreach (ReaderEvent reader in kvp.Value) {
                 templist.Add(reader.GetTimestamp());
             }
-            times.Add(kvp.Key,Sort(templist));
+            times.Add(kvp.Key,SortTimes(templist));
         }
+        data = FindLongestInactivity(times);
     }
 
-    public List<DateTime> Sort(List<string> input) {
+    public List<DateTime> SortTimes(List<string> input) {
         var output = new List<DateTime>();
         foreach (string timestamp in input) {
             output.Add(DateTime.Parse(timestamp));
@@ -55,12 +62,58 @@ hr {
         output.Sort((x, y) => DateTime.Compare(x, y));
 
         // Print all datetimes to make sure they are in order
-        Console.WriteLine("DEBUG STATEMENT START: DATETIME SORT CHECK");
+        Console.WriteLine("DEBUG STATEMENT START: DATETIME SORT CHECK:");
         foreach (DateTime time in output) {
             Console.WriteLine(time.ToString());
         }
         Console.WriteLine("DEBUG STATEMENT END: DATETIME SORT CHECK");
 
         return output;
+    }
+
+    public List<LongestGap> FindLongestInactivity(Dictionary<int, List<DateTime>> dict) {
+        var list = new List<LongestGap>();
+        DateTime start;
+        DateTime end;
+        TimeSpan gap;
+        TimeSpan tempGap;
+        
+        foreach (KeyValuePair<int, List<DateTime>> kvp in dict) {
+            if (kvp.Value.Count >= 2) {
+                start = kvp.Value[0];
+                end = kvp.Value[1];
+                gap = end-start;
+                List<DateTime> dates = kvp.Value;
+                for (int i=1; i<dates.Count-1; i++) {
+                    tempGap = dates[i+1]-dates[i];
+                    if (tempGap > gap) {
+                        gap = tempGap;
+                        start = dates[i];
+                        end = dates[i+1];
+                    }
+                }
+                list.Add(new LongestGap(start, end, gap, kvp.Key));
+            }
+        }
+        list.Sort((x,y) => TimeSpan.Compare(y.gap,x.gap));
+        return list;
+    }
+
+    public class LongestGap {
+        public DateTime start { get; }
+        public DateTime end { get; }
+        public TimeSpan gap { get; }
+        public int doorID { get; }
+
+        public LongestGap(DateTime start, DateTime end, TimeSpan gap, int doorID) {
+            this.start = start;
+            this.end = end;
+            this.gap = gap;
+            this.doorID = doorID;
+        }
+
+        public override string ToString() {
+            return ($"{doorID}: {start}-{end} && {gap}");
+        }
     }
 }
