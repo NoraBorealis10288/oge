@@ -3,7 +3,7 @@
 
 <PageTitle>Info Page</PageTitle>
 
-<p class="title"><b>Most Active Day of the Week</b></p>
+<p class="title"><b>Average Accesses on Each Day of Week</b></p>
 <hr>
 
 <div class="content">
@@ -12,13 +12,13 @@
         foreach (KeyValuePair<int,List<ReaderEvent>> kvp in userDict) {
             Console.WriteLine($"{kvp.Key}, {kvp.Value.Count}");
         }
-        <p>Sunday: @userDict[0].Count</p>
-        <p>Monday: @userDict[1].Count</p>
-        <p>Tuesday: @userDict[2].Count</p>
-        <p>Wednesday: @userDict[3].Count</p>
-        <p>Thursday: @userDict[4].Count</p>
-        <p>Friday: @userDict[5].Count</p>
-        <p>Saturday: @userDict[6].Count</p>
+        <p>Sunday: @(userDict[0].Count/numUniqueDays[0])</p>
+        <p>Monday: @(userDict[1].Count/numUniqueDays[1])</p>
+        <p>Tuesday: @(userDict[2].Count/numUniqueDays[2])</p>
+        <p>Wednesday: @(userDict[3].Count/numUniqueDays[3])</p>
+        <p>Thursday: @(userDict[4].Count/numUniqueDays[4])</p>
+        <p>Friday: @(userDict[5].Count/numUniqueDays[5])</p>
+        <p>Saturday: @(userDict[6].Count/numUniqueDays[6])</p>
     }
 </div>
 
@@ -43,15 +43,26 @@ hr {
 </style>
 
 @code {
+    int[] numUniqueDays = {0,0,0,0,0,0,0};
     SortedDictionary<int,List<ReaderEvent>> userDict = new SortedDictionary<int, List<ReaderEvent>>();
     public void Init() {
         for (int i=0;i<7;i++) {
             userDict.Add(i, new List<ReaderEvent>());
         }
+
         foreach(ReaderEvent reader in Shared.fileList) {
             int dayofweek = (int)( DateTime.Parse(reader.GetTimestamp()).DayOfWeek );
-            Console.WriteLine(dayofweek);
+            Console.WriteLine(DateTime.Parse(reader.GetTimestamp()));
             userDict[dayofweek].Add(reader);
+        }
+
+        for(int i=0; i<Shared.fileList.Count; i++) {
+            int dayofweek = (int)( DateTime.Parse(Shared.fileList[i].GetTimestamp()).DayOfWeek );
+            if ( (i>0 && (DateTime.Parse(Shared.fileList[i].GetTimestamp()).Date != DateTime.Parse(Shared.fileList[i-1].GetTimestamp()).Date)
+                    || i == 0) ) {
+                numUniqueDays[dayofweek]++;
+            }
+            userDict[dayofweek].Add(Shared.fileList[i]);
         }
     }
 }
