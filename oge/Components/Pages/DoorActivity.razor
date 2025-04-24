@@ -44,7 +44,7 @@ hr {
     List<(int id,int numAccesses)> data = new List<(int id,int numAccesses)>();
     int numDoors {get; set;} = 10;
     public void Sort() {
-        foreach (KeyValuePair<int,System.Collections.Generic.List<ReaderEvent>> kvp in Shared.dict) {
+        foreach (KeyValuePair<int,List<ReaderEvent>> kvp in Shared.dict) {
             data.Add((kvp.Key,kvp.Value.Count));
         }
 

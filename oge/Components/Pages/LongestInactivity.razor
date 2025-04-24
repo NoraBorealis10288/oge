@@ -3,7 +3,8 @@
 
 <PageTitle>Info Page</PageTitle>
 
-<h1>Longest Inactivity</h1>
+<p class="title"><b>Longest Inactivity</b></p>
+<hr>
 
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
@@ -44,7 +45,7 @@ hr {
     // Initialize local dictionary with just the timestamp of each access, grouped by which door they were from
     public void Init() {
         var templist = new List<string>();
-        foreach (KeyValuePair<int,System.Collections.Generic.List<ReaderEvent>> kvp in Shared.dict) {
+        foreach (KeyValuePair<int,List<ReaderEvent>> kvp in Shared.dict) {
             templist.Clear();
             foreach (ReaderEvent reader in kvp.Value) {
                 templist.Add(reader.GetTimestamp());

@@ -61,7 +61,7 @@ hr {
     }
 
     public void Sort() {
-        foreach (KeyValuePair<string,System.Collections.Generic.List<ReaderEvent>> kvp in userDict) {
+        foreach (KeyValuePair<string,List<ReaderEvent>> kvp in userDict) {
             data.Add((kvp.Key,kvp.Value.Count));
         }
         (string hash,int numAccesses) temp;

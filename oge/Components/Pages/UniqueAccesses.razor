@@ -3,10 +3,15 @@
 
 <PageTitle>Info Page</PageTitle>
 
-<h1>Unique Door Accesses</h1>
+<p class="title"><b>Unique Door Accesses</b></p>
+<hr>
 
 <div class="content">
+    @if (Shared.uploadStatus.Equals("file")) {
+        Init();
+        <h4>Title</h4>
 
+    }
 </div>
 
 <style>
@@ -30,5 +35,54 @@ hr {
 </style>
 
 @code {
+    Dictionary<(int door, DateTime day),List<ReaderEvent>> localDict;
+    public void Init() {
+        localDict = ProcessDictionary(Shared.dict);
+    }
 
+    // BROKEN: FIX IMMEDIATELY; IS ADDING DAYS TO THE WRONG KEY
+    public Dictionary<(int door, DateTime day),List<ReaderEvent>> ProcessDictionary(Dictionary<int, List<ReaderEvent>> dict) {
+        Dictionary<(int door, DateTime day),List<ReaderEvent>> tempDict = new();
+        List<ReaderEvent> tempList = new();
+
+        // loop through all doors in master dictionary, finding each unique combination of doorID and day
+        // and adding it as a key in the slave dictionary, with a list of the relevant readerevents as the value
+        foreach (KeyValuePair<int, List<ReaderEvent>> kvp in dict) {
+            foreach (ReaderEvent reader in kvp.Value) {
+                Console.WriteLine("DEBUG STATEMENT ID: " + kvp.Key);
+                Console.WriteLine("DEBUG STATEMENT DATETIME: " + reader.GetTimestamp() + ", " + DateTime.Parse(reader.GetTimestamp()) + ", " + DateTime.Parse(reader.GetTimestamp()).Date);
+                if (!tempDict.ContainsKey((kvp.Key, DateTime.Parse(reader.GetTimestamp()).Date))) {
+                    tempDict.Add( (kvp.Key, DateTime.Parse(reader.GetTimestamp()).Date), new List<ReaderEvent>() );
+                }
+                tempDict[ ( kvp.Key, DateTime.Parse(reader.GetTimestamp()).Date) ].Add(reader);
+            }
+        }
+
+        // loop through all unique keys in slave dictionary, overwriting the value with
+        // the results of calling ProcessList on that value dictionary values are read-only,
+        // so I'm using this weird workaround to achieve the same thing
+        foreach (KeyValuePair<(int,DateTime),List<ReaderEvent>> kvp in tempDict) {
+            tempList = ProcessList(kvp.Value);
+            kvp.Value.Clear();
+            foreach (ReaderEvent reader in tempList) { kvp.Value.Add(reader); }
+        }
+        return tempDict;
+    }
+
+    public List<ReaderEvent> ProcessList(List<ReaderEvent> list) {
+        // Sort list by id hash
+        list.Sort( (x,y) => String.Compare(x.GetHash(),y.GetHash()) );
+
+        // Remove duplicate hashes
+        var tempList = new List<ReaderEvent>();
+        tempList.Add(list[0]);
+        if (list.Count >= 2) {
+            for (int i=1; i<list.Count; i++) {
+                if (!list[i-1].GetHash().Equals(list[i].GetHash())) {
+                    tempList.Add(list[i]);
+                }
+            }
+        }
+        return tempList;
+    }
 }

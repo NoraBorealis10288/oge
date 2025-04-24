@@ -3,8 +3,14 @@
 
 <PageTitle>Info Page</PageTitle>
 
-<div class="content">
+<p class="title"><b>Access TimeRanges</b></p>
+<hr>
 
+<div class="content">
+    @if (Shared.uploadStatus.Equals("file")) {
+        Init();
+        <h4>Title</h4>
+    }
 </div>
 
 <style>
@@ -27,8 +33,7 @@ hr {
 
 </style>
 
-<h1>Access Timeranges</h1>
-
 @code {
-
+    // access all readerevents
+    public void Init() {}
 }
