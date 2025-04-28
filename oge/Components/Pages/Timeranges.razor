@@ -9,7 +9,14 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Init();
-        <h4>Title</h4>
+        <h4>Top 10 Doors Accessed Outside Chosen Time</h4>
+        <h6>Current Timespan: @startTime - @endTime</h6>
+        @foreach((int,int) tuple in data) {
+            Console.WriteLine("Door {0} was accessed {1} time(s) outside normal range", tuple.Item1, tuple.Item2);
+        }
+        @for (int i=0; i<10; i++) {
+            <p>Door @data[i].Item1 was accessed @data[i].Item2 time(s) outside normal range.</p>
+        }
     }
 </div>
 
@@ -34,6 +41,26 @@ hr {
 </style>
 
 @code {
-    // access all readerevents
-    public void Init() {}
+    TimeOnly startTime = new TimeOnly(9,0); // set default time to 9:00 AM local time.
+    TimeOnly endTime = new TimeOnly(17,0); // set default time to 5:00 PM local time.
+    List<(int doorID, int numAccesses)> data = new();
+
+    public void Init() {
+        foreach (KeyValuePair<int, List<ReaderEvent>> kvp in Shared.dict) {
+            data.Add( (kvp.Key, NumNotInRange(kvp.Value)) );
+        }
+        data.Sort( (x,y) => y.Item2.CompareTo(x.Item2) );
+    }
+
+    public int NumNotInRange(List<ReaderEvent> list) {
+        int num = 0;
+        foreach (ReaderEvent reader in list) {
+            // if after 5pm and before 9am num++;
+            TimeOnly eventTime = TimeOnly.FromDateTime(DateTime.Parse(reader.GetTimestamp()));
+            if (eventTime.CompareTo(startTime) > 0 && eventTime.CompareTo(endTime) < 0 ) {
+                num++;
+            }
+        }
+        return num;    
+    }
 }
