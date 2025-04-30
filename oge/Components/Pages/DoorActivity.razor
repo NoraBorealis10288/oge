@@ -9,14 +9,24 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Sort();
-        foreach ((int,int) tuple in data)
-        {
-            Console.Write($"{tuple.Item1},{tuple.Item2}\n");
-        }
+        
         <h4>Top @numDoors Most Active Doors</h4>
-        @for (int i=1;i<=numDoors;i++) {
-            <div>@data[data.Count-i].Item1 , @data[data.Count-i].Item2</div>
-        }
+
+        <table>
+            <thead>
+                <th>Door</th>
+                <th>Accesses</th>
+            </thead>
+            <tbody>
+                @for (int i=1;i<=numDoors;i++) {
+                    <tr>
+                        <td>@Shared.dict[data[data.Count-i].Item1][0].GetDesc().Substring(22)</td>
+                        <td>@data[data.Count-i].Item2</td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 </div>
 
@@ -36,6 +46,20 @@ hr {
 
 .content {
     text-align: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+    width: 50%;
+    margin: auto;
+}
+
+th {
+    background-color: #6b6c70;
+    color: #ffffff;
 }
 
 </style>

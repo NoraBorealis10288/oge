@@ -9,16 +9,45 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Init();
-        foreach (KeyValuePair<int,List<ReaderEvent>> kvp in userDict) {
-            Console.WriteLine($"{kvp.Key}, {kvp.Value.Count}");
-        }
-        <p>Sunday: @(userDict[0].Count/numUniqueDays[0])</p>
-        <p>Monday: @(userDict[1].Count/numUniqueDays[1])</p>
-        <p>Tuesday: @(userDict[2].Count/numUniqueDays[2])</p>
-        <p>Wednesday: @(userDict[3].Count/numUniqueDays[3])</p>
-        <p>Thursday: @(userDict[4].Count/numUniqueDays[4])</p>
-        <p>Friday: @(userDict[5].Count/numUniqueDays[5])</p>
-        <p>Saturday: @(userDict[6].Count/numUniqueDays[6])</p>
+
+        <h4>Average Accesses by Day</h4>
+
+        <table>
+            <thead>
+                <th>Day</th>
+                <th>Accesses</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sunday</td>
+                    <td>@(userDict[0].Count/numUniqueDays[0])</td>
+                </tr>
+                <tr>
+                    <td>Monday</td>
+                    <td>@(userDict[1].Count/numUniqueDays[1])</td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td>@(userDict[2].Count/numUniqueDays[2])</td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td>@(userDict[3].Count/numUniqueDays[3])</td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td>@(userDict[4].Count/numUniqueDays[4])</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td>@(userDict[5].Count/numUniqueDays[5])</td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td>@(userDict[6].Count/numUniqueDays[6])</td>
+                </tr>
+            </tbody>
+        </table>
     }
 </div>
 
@@ -40,6 +69,20 @@ hr {
     text-align: center;
 }
 
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+    width: 50%;
+    margin: auto;
+}
+
+th {
+    background-color: #6b6c70;
+    color: #ffffff;
+}
+
 </style>
 
 @code {
@@ -52,7 +95,6 @@ hr {
 
         foreach(ReaderEvent reader in Shared.fileList) {
             int dayofweek = (int)( DateTime.Parse(reader.GetTimestamp()).DayOfWeek );
-            Console.WriteLine(DateTime.Parse(reader.GetTimestamp()));
             userDict[dayofweek].Add(reader);
         }
 

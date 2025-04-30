@@ -12,4 +12,11 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/home/nora/.nuget/packages/" />
   </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.themes/18.4.0.30/buildTransitive/Syncfusion.Blazor.Themes.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.themes/18.4.0.30/buildTransitive/Syncfusion.Blazor.Themes.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.core/18.4.0.30/buildTransitive/Syncfusion.Blazor.Core.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.core/18.4.0.30/buildTransitive/Syncfusion.Blazor.Core.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.data/18.4.0.30/buildTransitive/Syncfusion.Blazor.Data.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.data/18.4.0.30/buildTransitive/Syncfusion.Blazor.Data.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.charts/18.4.0.30/buildTransitive/Syncfusion.Blazor.Charts.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.charts/18.4.0.30/buildTransitive/Syncfusion.Blazor.Charts.props')" />
+    <Import Project="$(NuGetPackageRoot)blazor.bootstrap/3.3.1/buildTransitive/Blazor.Bootstrap.props" Condition="Exists('$(NuGetPackageRoot)blazor.bootstrap/3.3.1/buildTransitive/Blazor.Bootstrap.props')" />
+  </ImportGroup>
 </Project>

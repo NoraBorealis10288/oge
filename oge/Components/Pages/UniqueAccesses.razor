@@ -9,10 +9,25 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Init();
+
         <h4>Top 10 Days With Most Accesses by Unique Users</h4>
-        @for (int i=0; i<10; i++) {
-            <p>Door @data[i][0].GetID() was accessed @data[i].Count time(s) on the date @DateTime.Parse(data[i][0].GetTimestamp()).Date.ToString().Substring(0,DateTime.Parse(data[i][0].GetTimestamp()).Date.ToString().IndexOf(" 12:"))</p>
-        }
+
+        <table>
+            <thead>
+                <th>Door</th>
+                <th>Unique Accesses</th>
+                <th>Date</th>
+            </thead>
+            <tbody>
+                @for (int i=0; i<10; i++) {
+                    <tr>
+                        <td>@Shared.dict[data[i][0].GetID()][0].GetDesc().Substring(22)</td>
+                        <td>@data[i].Count</td>
+                        <td>@DateTime.Parse(data[i][0].GetTimestamp()).Date.ToString().Substring(0,DateTime.Parse(data[i][0].GetTimestamp()).Date.ToString().IndexOf(" 12:"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 </div>
 
@@ -34,21 +49,31 @@ hr {
     text-align: center;
 }
 
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+    width: 50%;
+    margin: auto;
+}
+
+th {
+    background-color: #6b6c70;
+    color: #ffffff;
+}
+
 </style>
 
 @code {
     Dictionary<(int door, DateTime day),List<ReaderEvent>> localDict;
     List<List<ReaderEvent>> data = new();
-    String temp = "";
     public void Init() {
         localDict = ProcessDictionary(Shared.dict);
         foreach (KeyValuePair<(int,DateTime),List<ReaderEvent>> kvp in localDict) {
             data.Add(kvp.Value);
         }
         data.Sort( (x,y) => y.Count.CompareTo(x.Count) );
-        foreach (List<ReaderEvent> list in data) {
-            Console.WriteLine("Door {0} was accessed {1} time(s) on the date {2}", list[0].GetID(), list.Count, DateTime.Parse(list[0].GetTimestamp()).Date);
-        }
     }
 
     public Dictionary<(int door, DateTime day),List<ReaderEvent>> ProcessDictionary(Dictionary<int, List<ReaderEvent>> dict) {
@@ -59,8 +84,6 @@ hr {
         // and adding it as a key in the slave dictionary, with a list of the relevant readerevents as the value
         foreach (KeyValuePair<int, List<ReaderEvent>> kvp in dict) {
             foreach (ReaderEvent reader in kvp.Value) {
-                Console.WriteLine("DEBUG STATEMENT ID: " + kvp.Key);
-                Console.WriteLine("DEBUG STATEMENT DATETIME: " + reader.GetTimestamp() + ", " + DateTime.Parse(reader.GetTimestamp()) + ", " + DateTime.Parse(reader.GetTimestamp()).Date);
                 if (!tempDict.ContainsKey((kvp.Key, DateTime.Parse(reader.GetTimestamp()).Date))) {
                     tempDict.Add( (kvp.Key, DateTime.Parse(reader.GetTimestamp()).Date), new List<ReaderEvent>() );
                 }

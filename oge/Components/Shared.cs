@@ -83,11 +83,13 @@ public class ReaderEvent {
     }
 
     public string GetTimestamp() { return column1; }
+
+    public string GetName() { return column2; }
+
+    public string GetDesc() { return column3; }
     public string GetHash() { return column4; }
 
     public int GetID() { return Int32.Parse(column5 + column6); }
-
-    public string GetName() { return column2; }
     public override string ToString() {
         return $"{column1}, {column2}, {column3}, {column4}, {column5}, {column6}";
     }

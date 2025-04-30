@@ -9,14 +9,23 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Init();
-        foreach ((string,int) tuple in data)
-        {
-            Console.Write($"{tuple.Item1},{tuple.Item2}\n");
-        }
+ 
         <h4>Top @numDoors Most Active Users</h4>
-        @for (int i=1;i<=numDoors;i++) {
-            <div>@data[data.Count-i].Item1 , @data[data.Count-i].Item2</div>
-        }
+
+        <table>
+            <thead>
+                <th>User ID</th>
+                <th>Accesses</th>
+            </thead>
+            <tbody>
+                @for (int i=1;i<=numDoors;i++) {
+                    <tr>
+                        <td>@data[data.Count-i].Item1</td>
+                        <td>@data[data.Count-i].Item2</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 </div>
 
@@ -38,12 +47,27 @@ hr {
     text-align: center;
 }
 
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+    width: 50%;
+    margin: auto;
+}
+
+th {
+    background-color: #6b6c70;
+    color: #ffffff;
+}
+
 </style>
 
 @code {
     Dictionary<string,List<ReaderEvent>> userDict = new Dictionary<string, List<ReaderEvent>>();
     List<(string hash, int numAccesses)> data = new List<(string hash, int numAccesses)>();
     int numDoors {get; set;} = 10;
+
     public void Init() {
         InitializeDictByUser();
         Sort();

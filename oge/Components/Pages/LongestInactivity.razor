@@ -9,13 +9,27 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Init();
-        foreach(LongestGap val in data) {
-            Console.WriteLine(val);
-        }
+
         <h4>Top 10 Longest Gaps</h4>
-        for (int i=0; i<10; i++) {
-            <div>@data[i].ToString()</div>
-        }
+
+        <table>
+            <thead>
+                <th>Door</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Time (DD.HH:MM:SS)</th>
+            </thead>
+            <tbody>
+                @for (int i=0; i<10; i++) {
+                    <tr>
+                        <td>@Shared.dict[data[i].doorID][0].GetDesc().Substring(22)</td>
+                        <td>@data[i].start</td>
+                        <td>@data[i].end</td>
+                        <td>@data[i].gap</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 </div>
 
@@ -35,6 +49,20 @@ hr {
 
 .content {
     text-align: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+    width: 50%;
+    margin: auto;
+}
+
+th {
+    background-color: #6b6c70;
+    color: #ffffff;
 }
 
 </style>
@@ -61,13 +89,6 @@ hr {
             output.Add(DateTime.Parse(timestamp));
         }
         output.Sort((x, y) => DateTime.Compare(x, y));
-
-        // Print all datetimes to make sure they are in order
-        Console.WriteLine("DEBUG STATEMENT START: DATETIME SORT CHECK:");
-        foreach (DateTime time in output) {
-            Console.WriteLine(time.ToString());
-        }
-        Console.WriteLine("DEBUG STATEMENT END: DATETIME SORT CHECK");
 
         return output;
     }
