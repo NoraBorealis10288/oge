@@ -77,7 +77,6 @@
 /home/nora/repos/oge/oge/obj/Debug/net9.0/ref/oge.dll
 /home/nora/repos/oge/oge/obj/Debug/net9.0/oge.sourcelink.json
 /home/nora/repos/oge/oge/obj/Debug/net9.0/scopedcss/Components/Layout/InfoLayout.razor.rz.scp.css
-/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-owxxu6boty.gz
 /home/nora/repos/oge/oge/bin/Debug/net9.0/BlazorBootstrap.dll
 /home/nora/repos/oge/oge/bin/Debug/net9.0/Newtonsoft.Json.dll
 /home/nora/repos/oge/oge/bin/Debug/net9.0/Syncfusion.Blazor.Charts.dll
@@ -123,5 +122,6 @@
 /home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/36w3eu0hkb-j8zp7bt7w3.gz
 /home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/mfzx4sb2rv-79hai7knhw.gz
 /home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/eojifsclv0-7t9tbfaemk.gz
-/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-jw8b2kr3th.gz
 /home/nora/repos/oge/oge/obj/Debug/net9.0/oge.csproj.Up2Date
+/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/663efb6r0i-c1oexlz2fa.gz
+/home/nora/repos/oge/oge/obj/Debug/net9.0/compressed/dfmvse1tas-yoi7xx22d1.gz
