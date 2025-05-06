@@ -9,45 +9,45 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Init();
+        InitGraph();
+        
+        <div class="container" style="width: 100%;">
+            <div class="panel" style="width: 75%;">
+                <BarChart @ref="barChart" Width="800" Height="600" class="chart"/>
 
-        <h4>Average Accesses by Day</h4>
+                <div class="description"><p>Testing Testing 123</p></div>
+            </div>
 
-        <table>
-            <thead>
-                <th>Day</th>
-                <th>Accesses</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sunday</td>
-                    <td>@(userDict[0].Count/numUniqueDays[0])</td>
-                </tr>
-                <tr>
-                    <td>Monday</td>
-                    <td>@(userDict[1].Count/numUniqueDays[1])</td>
-                </tr>
-                <tr>
-                    <td>Tuesday</td>
-                    <td>@(userDict[2].Count/numUniqueDays[2])</td>
-                </tr>
-                <tr>
-                    <td>Wednesday</td>
-                    <td>@(userDict[3].Count/numUniqueDays[3])</td>
-                </tr>
-                <tr>
-                    <td>Thursday</td>
-                    <td>@(userDict[4].Count/numUniqueDays[4])</td>
-                </tr>
-                <tr>
-                    <td>Friday</td>
-                    <td>@(userDict[5].Count/numUniqueDays[5])</td>
-                </tr>
-                <tr>
-                    <td>Saturday</td>
-                    <td>@(userDict[6].Count/numUniqueDays[6])</td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="panel" style="width: 25%; margin-top: 5%;">
+                <Accordion AlwaysOpen="true" Flush="true">
+                    <AccordionItem Title="Location">
+                        <Content>
+                            <CheckboxInput Label="Norman" @bind-Value="filter1option1" />
+                            <CheckboxInput Label="OKC" @bind-Value="filter1option2" />
+                            <CheckboxInput Label="Fort Smith" @bind-Value="filter1option3" />
+                        </Content>
+                    </AccordionItem>
+                    <AccordionItem Title="Graph Count">
+                        <Content>
+                            <RadioInput Name="count" Label="5" @bind-Value="filter2option1" />
+                            <RadioInput Name="count" Label="10" @bind-Value="filter2option2" />
+                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3" />
+                        </Content>
+                    </AccordionItem>
+                    <AccordionItem Title="Users">
+                        <Content>
+                            <CheckboxInput Label="101 GUARD SHACK PLANT ENTRY" @bind-Value="filter3option1" />
+                            <CheckboxInput Label="105 CNTRL RM SW DR" @bind-Value="filter3option2" />
+                        </Content>
+                    </AccordionItem>
+                    <AccordionItem Title="DateTime">
+                        <Content>
+
+                        </Content>
+                    </AccordionItem>
+                </Accordion>
+            </div>
+        </div>
     }
 </div>
 
@@ -69,25 +69,86 @@ hr {
     text-align: center;
 }
 
-table, th, td {
-  border: 1px solid black;
+.container {
+    display: flex;
+    align-items: flex-start;
 }
 
-table {
-    width: 50%;
+.panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart {
+    margin-left: 10%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    display: inline-block;
+}
+
+.description {
+    width: 80%;
     margin: auto;
+    padding: 5%;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #ede9d0;
 }
 
-th {
-    background-color: #6b6c70;
-    color: #ffffff;
+.accordion-button, .accordion-body {
+    background-color: #fff4ee !important;
+}
+
+.accordion-button {
+    font-size: 20px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'%3E%3Cpath d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4'/%3E%3C/svg%3E");
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dash' viewBox='0 0 16 16'%3E%3Cpath d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8'/%3E%3C/svg%3E");
+}
+
+.accordion-button:not(.collapsed) {
+    color: inherit !important;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    outline: none;
 }
 
 </style>
 
 @code {
+    // DATA VARS
     int[] numUniqueDays = {0,0,0,0,0,0,0};
     SortedDictionary<int,List<ReaderEvent>> userDict = new SortedDictionary<int, List<ReaderEvent>>();
+
+    // GRAPH VARS
+    private BarChart barChart = default!;
+    private BarChartOptions barChartOptions = default!;
+    private ChartData chartData = default!;
+
+    private List<string> x_axis = new() {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    private List<double?> y_axis = new();
+
+    // FILTER VARS
+    private bool filter1option1 = false;
+    private bool filter1option2 = false;
+    private bool filter1option3 = false;
+
+    private bool filter2option1 = false;
+    private bool filter2option2 = true;
+    private bool filter2option3 = false;
+
+    private bool filter3option1 = false;
+    private bool filter3option2 = false;
     public void Init() {
         for (int i=0;i<7;i++) {
             userDict.Add(i, new List<ReaderEvent>());
@@ -106,5 +167,44 @@ th {
             }
             userDict[dayofweek].Add(Shared.fileList[i]);
         }
+    }
+
+    public void InitGraph() {
+        for (int i=0;i<7;i++) {
+            y_axis.Add(userDict[i].Count/numUniqueDays[i]);
+        }
+
+        var datasets = new List<IChartDataset>();
+
+        var dataset = new BarChartDataset() {
+            Data = y_axis, // numAccesses
+            BackgroundColor = new List<string> { "#bb8378" }
+        };
+        datasets.Add(dataset);
+
+        chartData = new ChartData {
+            Labels = x_axis,
+            Datasets = datasets
+        };
+
+        barChartOptions = new();
+        barChartOptions.Responsive = true;
+        barChartOptions.Interaction = new Interaction { Mode = InteractionMode.X };
+        barChartOptions.IndexAxis = "x";
+
+        barChartOptions.Scales.X!.Title = new ChartAxesTitle { Text = "Door", Display = true };
+        barChartOptions.Scales.Y!.Title = new ChartAxesTitle { Text = "Accesses", Display = true };
+
+        barChartOptions.Plugins.Legend.Display = false;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // pass the plugin name to enable the data labels
+            await barChart.InitializeAsync(chartData: chartData, chartOptions: barChartOptions, plugins: new string[] { "ChartDataLabels" });
+        }
+        await base.OnAfterRenderAsync(firstRender);
     }
 }

@@ -8,8 +8,9 @@
 
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
-        Sort();
+        Init();
         InitGraph();
+
         <div class="container" style="width: 100%;">
             <div class="panel" style="width: 75%;">
                 <BarChart @ref="barChart" Width="800" Height="600" class="chart"/>
@@ -98,21 +99,6 @@ hr {
     background-color: #ede9d0;
 }
 
-table, th, td {
-    border: 1px solid black;
-}
-
-table {
-    width: 50%;
-    margin: auto;
-    display: inline-table;
-}
-
-th {
-    background-color: #6b6c70;
-    color: #ffffff;
-}
-
 .accordion-button, .accordion-body {
     background-color: #fff4ee !important;
 }
@@ -169,7 +155,7 @@ th {
     private bool filter3option2 = false;
 
     // FUNCTIONS
-    public void Sort() {
+    public void Init() {
         foreach (KeyValuePair<int,List<ReaderEvent>> kvp in Shared.dict) {
             data.Add((kvp.Key,kvp.Value.Count));
         }
