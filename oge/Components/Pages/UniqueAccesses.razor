@@ -29,9 +29,9 @@
                     </AccordionItem>
                     <AccordionItem Title="Graph Count">
                         <Content>
-                            <RadioInput Name="count" Label="5" @bind-Value="filter2option1" />
-                            <RadioInput Name="count" Label="10" @bind-Value="filter2option2" />
-                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3" />
+                            <RadioInput Name="count" Label="5" @bind-Value="filter2option1" @onchange="RewriteGraph"/>
+                            <RadioInput Name="count" Label="10" @bind-Value="filter2option2" @onchange="RewriteGraph"/>
+                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3" @onchange="RewriteGraph"/>
                         </Content>
                     </AccordionItem>
                     <AccordionItem Title="Users">
@@ -129,6 +129,7 @@ hr {
     // DATA VARS
     Dictionary<(int door, DateTime day),List<ReaderEvent>> localDict;
     List<List<ReaderEvent>> data = new();
+    int numDoors {get; set;} = 10;
 
     // GRAPH VARS
     private BarChart barChart = default!;
@@ -149,7 +150,10 @@ hr {
 
     private bool filter3option1 = false;
     private bool filter3option2 = false;
+
     public void Init() {
+        data.Clear();
+
         localDict = ProcessDictionary(Shared.dict);
         foreach (KeyValuePair<(int,DateTime),List<ReaderEvent>> kvp in localDict) {
             data.Add(kvp.Value);
@@ -201,7 +205,11 @@ hr {
     }
 
     public void InitGraph() {
-        for (int i=0; i<10; i++) {
+        x_axis.Clear();
+        y_axis.Clear();
+
+        int maxDoors = Math.Min(numDoors, data.Count);
+        for (int i=0; i<maxDoors; i++) {
             x_axis.Add(Shared.dict[data[i][0].GetID()][0].GetDesc().Substring(22) + ", " + DateTime.Parse(data[i][0].GetTimestamp()).Date.ToString().Substring(0,DateTime.Parse(data[i][0].GetTimestamp()).Date.ToString().IndexOf(" 12:")));
             y_axis.Add(data[i].Count);
         }
@@ -238,5 +246,22 @@ hr {
             await barChart.InitializeAsync(chartData: chartData, chartOptions: barChartOptions, plugins: new string[] { "ChartDataLabels" });
         }
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+    // This Updates the data depending on the filters selected - Lai
+    public async Task RewriteGraph()
+    {
+        // 10 - 15 doesn't work but 5 - 15 does
+        if(filter2option1) { numDoors = 5; }
+        else if(filter2option2) { numDoors = 10; }
+        else if(filter2option3) { numDoors = 15; }
+
+        // Reset the data
+        Init();
+        InitGraph();
+
+        // Reinitialize the graph with the new data
+        await barChart.UpdateAsync(chartData: chartData, chartOptions: barChartOptions);
+        StateHasChanged();
     }
 }

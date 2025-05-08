@@ -29,9 +29,9 @@
                     </AccordionItem>
                     <AccordionItem Title="Graph Count">
                         <Content>
-                            <RadioInput Name="count" Label="5" @bind-Value="filter2option1" />
-                            <RadioInput Name="count" Label="10" @bind-Value="filter2option2" />
-                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3" />
+                            <RadioInput Name="count" Label="5" @bind-Value="filter2option1" @onchange="RewriteGraph"/>
+                            <RadioInput Name="count" Label="10" @bind-Value="filter2option2" @onchange="RewriteGraph"/>
+                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3" @onchange="RewriteGraph"/>
                         </Content>
                     </AccordionItem>
                     <AccordionItem Title="Users">
@@ -152,6 +152,7 @@ hr {
     private bool filter3option2 = false;
 
     public void Init() {
+        data.Clear();
         InitializeDictByUser();
         Sort();
     }
@@ -188,7 +189,11 @@ hr {
     }
 
     public void InitGraph() {
-        for (int i=1;i<=numDoors;i++) {
+        x_axis.Clear();
+        y_axis.Clear();
+
+        int maxDoors = Math.Min(numDoors, data.Count);
+        for (int i=1;i<=maxDoors;i++) {
             x_axis.Add(data[data.Count-i].Item1);
             y_axis.Add(data[data.Count-i].Item2);
         }
@@ -225,5 +230,22 @@ hr {
             await barChart.InitializeAsync(chartData: chartData, chartOptions: barChartOptions, plugins: new string[] { "ChartDataLabels" });
         }
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+    // This Updates the data depending on the filters selected - Lai
+    public async Task RewriteGraph()
+    {
+        // 10 - 15 doesn't work but 5 - 15 does
+        if(filter2option1) { numDoors = 5; }
+        else if(filter2option2) { numDoors = 10; }
+        else if(filter2option3) { numDoors = 15; }
+
+        // Reset the data
+        Init();
+        InitGraph();
+
+        // Reinitialize the graph with the new data
+        await barChart.UpdateAsync(chartData: chartData, chartOptions: barChartOptions);
+        StateHasChanged();
     }
 }
