@@ -19,24 +19,40 @@
     }
 
     @if (Shared.uploadStatus.Equals("file")) {
+        InitDefaultInfoOne();
+        InitDefaultInfoTwo();
+        InitDefaultInfoThree();
+        InitDefaultInfoFour();
+        InitDefaultInfoFive();
+        InitDefaultInfoSix();
+        InitGraphs();
         <div class="container-fluid pt-5">
             <div class="row">
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="card" style="width: 25rem; height: 18rem;">
                         <p><b>Door Activity</b></p>
-                        <a href="dooractivity" class="btn" style="height: 100%;"><img src="ogelogo.png" width="100%" height="100%"/></a>
+                        <center><hr style="border-top: 2px solid black;"></center>
+                        <a href="dooractivity" class="btn" style="height: 100%;">
+                            <BarChart Width="350" Height="230" @ref="barChart1" class="chart"/>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="card" style="width: 25rem; height: 18rem;">
                         <p><b>User Activity</b></p>
-                        <a href="useractivity" class="btn" style="height: 100%;"><img src="ogelogo.png" width="100%" height="100%"/></a>
+                        <center><hr style="border-top: 2px solid black;"></center>
+                        <a href="useractivity" class="btn" style="height: 100%;">
+                            <BarChart Width="350" Height="230" @ref="barChart2" class="chart"/>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="card" style="width: 25rem; height: 18rem;">
                         <p><b>Average Accesses</b></p>
-                        <a href="dowactivity" class="btn" style="height: 100%;"><img src="ogelogo.png" width="100%" height="100%"/></a>
+                        <center><hr style="border-top: 2px solid black;"></center>
+                        <a href="dowactivity" class="btn" style="height: 100%;">
+                            <BarChart Width="350" Height="230" @ref="barChart3" class="chart"/>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -45,25 +61,47 @@
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="card" style="width: 25rem; height: 18rem;">
                         <p><b>Unique Accesses</b></p>
-                        <a href="uniqueaccesses" class="btn" style="height: 100%;"><img src="ogelogo.png" width="100%" height="100%"/></a>
+                        <center><hr style="border-top: 2px solid black;"></center>
+                        <a href="uniqueaccesses" class="btn" style="height: 100%;">
+                            <BarChart Width="350" Height="230" @ref="barChart4" class="chart"/>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="card" style="width: 25rem; height: 18rem;">
                         <p><b>Longest Inactivity</b></p>
-                        <a href="inactivity" class="btn" style="height: 100%;"><img src="ogelogo.png" width="100%" height="100%"/></a>
+                        <center><hr style="border-top: 2px solid black;"></center>
+                        <a href="inactivity" class="btn" style="height: 100%;">
+                            <BarChart Width="350" Height="230" @ref="barChart5" class="chart"/>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="card" style="width: 25rem; height: 18rem;">
                         <p><b>Timeranges</b></p>
-                        <a href="timeranges" class="btn" style="height: 100%;"><img src="ogelogo.png" width="100%" height="100%"/></a>
+                        <center><hr style="border-top: 2px solid black;"></center>
+                        <a href="timeranges" class="btn" style="height: 100%;">
+                            <BarChart Width="350" Height="230" @ref="barChart6" class="chart"/>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     }
 </div>
+
+<script>
+    // Global defaults for all text in all charts (in px) :contentReference[oaicite:0]{index=0}
+    Chart.defaults.scales = Chart.defaults.scales || {};
+    Chart.defaults.scales.x = Chart.defaults.scales.x || {};
+
+    // Ensure ticks and its font object exist
+    Chart.defaults.scales.x.ticks = Chart.defaults.scales.x.ticks || {};
+    Chart.defaults.scales.x.ticks.font = Chart.defaults.scales.x.ticks.font || {};
+
+    // Finally, set the x-axis tick label size to zero
+    Chart.defaults.scales.x.ticks.font.size = 0;
+</script>
 
 <style>
 
@@ -88,6 +126,12 @@ p {
     text-align: center;
 }
 
+.chart {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
 .upload-button {
     display: flex;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='black' class='bi bi-upload' viewBox='0 0 16 16'%3E%3Cpath d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5'/%3E%C/%3E%3Cpath d='M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z'/%3E%3C/svg%3E");
@@ -110,8 +154,465 @@ p {
 </style>
 
 @code {
+    // DATA VARIABLES
+    List<(int id,int numAccesses)> defaultDoorActivityData = new List<(int id,int numAccesses)>();
+
+    List<(string hash, int numAccesses)> defaultUserActivityData = new List<(string hash, int numAccesses)>();
+
+    SortedDictionary<int,List<ReaderEvent>> defaultDoWActivityData = new SortedDictionary<int, List<ReaderEvent>>();
+    
+    string[] DAYS_OF_WEEK = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+    int[] defaultUniqueDays = [0,0,0,0,0,0,0];
+
+    Dictionary<(int door, DateTime day),List<ReaderEvent>> localDict;
+    List<List<ReaderEvent>> defaultUniqueAccessesData = new();
+
+    Dictionary<int,List<DateTime>> defaultLongestInactivityTimes = new Dictionary<int, List<DateTime>>();
+    List<LongestGap> defaultLongestInactivityData;
+
+    TimeOnly defaultStartTime = new TimeOnly(9,0); // set default time to 9:00 AM local time.
+    TimeOnly defaultEndTime = new TimeOnly(17,0); // set default time to 5:00 PM local time.
+    List<(int doorID, int numAccesses)> defaultTimerangesData = new();
+
+    // GRAPH VARIABLES
+    private BarChart barChart1 = default!;
+    private BarChartOptions barChartOptions1 = default!;
+    private ChartData chartData1 = default!;
+
+    private List<string> x_axis1 = new();
+    private List<double?> y_axis1 = new();
+
+    private BarChart barChart2 = default!;
+    private BarChartOptions barChartOptions2 = default!;
+    private ChartData chartData2 = default!;
+
+    private List<string> x_axis2 = new();
+    private List<double?> y_axis2 = new();
+
+    private BarChart barChart3 = default!;
+    private BarChartOptions barChartOptions3 = default!;
+    private ChartData chartData3 = default!;
+
+    private List<string> x_axis3 = new();
+    private List<double?> y_axis3 = new();
+
+    private BarChart barChart4 = default!;
+    private BarChartOptions barChartOptions4 = default!;
+    private ChartData chartData4 = default!;
+
+    private List<string> x_axis4 = new();
+    private List<double?> y_axis4 = new();
+
+    private BarChart barChart5 = default!;
+    private BarChartOptions barChartOptions5 = default!;
+    private ChartData chartData5 = default!;
+
+    private List<string> x_axis5 = new();
+    private List<double?> y_axis5 = new();
+    
+    private BarChart barChart6 = default!;
+    private BarChartOptions barChartOptions6 = default!;
+    private ChartData chartData6 = default!;
+
+    private List<string> x_axis6 = new();
+    private List<double?> y_axis6 = new();
+
     public async Task UploadFileAsync(InputFileChangeEventArgs e) {
         var file = e.File;
         await Shared.FileUploadedAsync(file);
+    }
+
+    // INIT HANDLERS
+    public void InitDefaultInfoOne() {
+        foreach (KeyValuePair<int,List<ReaderEvent>> kvp in Shared.dict) {
+            defaultDoorActivityData.Add((kvp.Key,kvp.Value.Count));
+        }
+
+        (int id,int numAccesses) temp;
+        for (int j=0; j<=defaultDoorActivityData.Count-2; j++)
+        {
+            for (int i=0; i<=defaultDoorActivityData.Count-2; i++)
+            {
+                if (defaultDoorActivityData[i].numAccesses > defaultDoorActivityData[i+1].numAccesses)
+                {
+                    temp = (defaultDoorActivityData[i+1].id,defaultDoorActivityData[i+1].numAccesses);
+                    defaultDoorActivityData[i+1] = (defaultDoorActivityData[i].id,defaultDoorActivityData[i].numAccesses);
+                    defaultDoorActivityData[i] = (temp.id,temp.numAccesses);
+                }
+            }
+        }
+        Shared.doorActivityData = defaultDoorActivityData;
+    }
+    
+    public void InitDefaultInfoTwo() {
+        Dictionary<string,List<ReaderEvent>> userDict = new Dictionary<string, List<ReaderEvent>>();
+
+        // Initialize local dictionary
+        foreach(ReaderEvent reader in Shared.fileList) {
+            if (userDict.ContainsKey(reader.GetHash())) {
+                userDict[reader.GetHash()].Add(reader);
+            } else {
+                userDict.Add(reader.GetHash(), new List<ReaderEvent>());
+                userDict[reader.GetHash()].Add(reader);
+            }
+        } 
+        
+        foreach (KeyValuePair<string,List<ReaderEvent>> kvp in userDict) {
+            defaultUserActivityData.Add((kvp.Key,kvp.Value.Count));
+        }
+
+        defaultUserActivityData.Sort((x,y) => y.Item2.CompareTo(x.Item2));
+
+        Shared.userActivityData = defaultUserActivityData;
+    }
+
+    public void InitDefaultInfoThree() {
+        for (int i=0;i<7;i++) {
+            defaultDoWActivityData.Add(i, new List<ReaderEvent>());
+        }
+
+        foreach(ReaderEvent reader in Shared.fileList) {
+            int dayofweek = (int)( DateTime.Parse(reader.GetTimestamp()).DayOfWeek );
+            defaultDoWActivityData[dayofweek].Add(reader);
+        }
+
+        for(int i=0; i<Shared.fileList.Count; i++) {
+            int dayofweek = (int)( DateTime.Parse(Shared.fileList[i].GetTimestamp()).DayOfWeek );
+            if ( (i>0 && (DateTime.Parse(Shared.fileList[i].GetTimestamp()).Date != DateTime.Parse(Shared.fileList[i-1].GetTimestamp()).Date)
+                    || i == 0) ) {
+                defaultUniqueDays[dayofweek]++;
+            }
+            defaultDoWActivityData[dayofweek].Add(Shared.fileList[i]);
+        }
+        Shared.dowActivityData = defaultDoWActivityData;
+        Shared.numUniqueDays = defaultUniqueDays;
+    }
+
+    public void InitDefaultInfoFour() {
+        localDict = ProcessDictionaryUniqueAccesses(Shared.dict);
+        foreach (KeyValuePair<(int,DateTime),List<ReaderEvent>> kvp in localDict) {
+            defaultUniqueAccessesData.Add(kvp.Value);
+        }
+        defaultUniqueAccessesData.Sort( (x,y) => y.Count.CompareTo(x.Count) );
+        Shared.localDict = localDict;
+        Shared.uniqueAccessesData = defaultUniqueAccessesData;
+    }
+
+    public void InitDefaultInfoFive() {
+        var templist = new List<string>();
+        foreach (KeyValuePair<int,List<ReaderEvent>> kvp in Shared.dict) {
+            templist.Clear();
+            foreach (ReaderEvent reader in kvp.Value) {
+                templist.Add(reader.GetTimestamp());
+            }
+            defaultLongestInactivityTimes.Add(kvp.Key,SortTimes(templist));
+        }
+        defaultLongestInactivityData = FindLongestInactivity(defaultLongestInactivityTimes);
+        Shared.longestInactivityTimes = defaultLongestInactivityTimes;
+        Shared.longestInactivityData = defaultLongestInactivityData;
+    }
+
+    public void InitDefaultInfoSix() {
+        foreach (KeyValuePair<int, List<ReaderEvent>> kvp in Shared.dict) {
+            defaultTimerangesData.Add( (kvp.Key, NumNotInRange(kvp.Value)) );
+        }
+        defaultTimerangesData.Sort( (x,y) => y.Item2.CompareTo(x.Item2) );
+        Shared.startTime = defaultStartTime;
+        Shared.endTime = defaultEndTime;
+        Shared.timerangesData = defaultTimerangesData;
+    }
+
+    // GRAPHS
+    public void InitGraphs() {
+        // INFO ONE
+        for (int i=1;i<=10;i++) {
+            x_axis1.Add(Shared.dict[defaultDoorActivityData[defaultDoorActivityData.Count-i].Item1][0].GetDesc().Substring(22));
+            y_axis1.Add(defaultDoorActivityData[defaultDoorActivityData.Count-i].Item2);
+        }
+
+        var datasets1 = new List<IChartDataset>();
+
+        var dataset1 = new BarChartDataset() {
+            Data = y_axis1, // numAccesses
+            BackgroundColor = new List<string> { "#56423e" }
+        };
+        datasets1.Add(dataset1);
+
+        chartData1 = new ChartData {
+            Labels = x_axis1,
+            Datasets = datasets1
+        };
+
+        barChartOptions1 = new();
+        barChartOptions1.Responsive = true;
+        barChartOptions1.Interaction = new Interaction { Mode = InteractionMode.X };
+        barChartOptions1.IndexAxis = "x";
+        
+
+        barChartOptions1.Scales.X!.Title = new ChartAxesTitle { Text = "Door", Display = true };
+        barChartOptions1.Scales.Y!.Title = new ChartAxesTitle { Text = "Accesses", Display = true };
+
+        barChartOptions1.Plugins.Legend.Display = false;
+
+        // INFO TWO
+        for (int i=0;i<10;i++) {
+            x_axis2.Add(defaultUserActivityData[i].Item1);
+            y_axis2.Add(defaultUserActivityData[i].Item2);
+        }
+
+        var datasets2 = new List<IChartDataset>();
+
+        var dataset2 = new BarChartDataset() {
+            Data = y_axis2, // numAccesses
+            BackgroundColor = new List<string> { "#56423e" }
+        };
+        datasets2.Add(dataset2);
+
+        chartData2 = new ChartData {
+            Labels = x_axis2,
+            Datasets = datasets2
+        };
+
+        barChartOptions2 = new();
+        barChartOptions2.Responsive = true;
+        barChartOptions2.Interaction = new Interaction { Mode = InteractionMode.X };
+        barChartOptions2.IndexAxis = "x";
+
+        barChartOptions2.Scales.X!.Title = new ChartAxesTitle { Text = "User", Display = true };
+        barChartOptions2.Scales.Y!.Title = new ChartAxesTitle { Text = "Accesses", Display = true };
+
+        barChartOptions2.Plugins.Legend.Display = false;
+        
+        // INFO THREE
+        
+        for (int i=0;i<7;i++) {
+            x_axis3.Add(DAYS_OF_WEEK[i]);
+            y_axis3.Add(defaultDoWActivityData[i].Count/defaultUniqueDays[i]);
+        }
+
+        var datasets3 = new List<IChartDataset>();
+
+        var dataset3 = new BarChartDataset() {
+            Data = y_axis3, // numAccesses
+            BackgroundColor = new List<string> { "#56423e" }
+        };
+        datasets3.Add(dataset3);
+
+        chartData3 = new ChartData {
+            Labels = x_axis3,
+            Datasets = datasets3
+        };
+
+        barChartOptions3 = new();
+        barChartOptions3.Responsive = true;
+        barChartOptions3.Interaction = new Interaction { Mode = InteractionMode.X };
+        barChartOptions3.IndexAxis = "x";
+
+        barChartOptions3.Scales.X!.Title = new ChartAxesTitle { Text = "Day", Display = true };
+        barChartOptions3.Scales.Y!.Title = new ChartAxesTitle { Text = "Accesses", Display = true };
+
+        barChartOptions3.Plugins.Legend.Display = false;
+
+        // INFO FOUR
+        for (int i=0; i<10; i++) {
+            x_axis4.Add(Shared.dict[defaultUniqueAccessesData[i][0].GetID()][0].GetDesc().Substring(22)
+                        + ", " + DateTime.Parse(defaultUniqueAccessesData[i][0].GetTimestamp()).Date.ToString()
+                        .Substring(0,DateTime.Parse(defaultUniqueAccessesData[i][0].GetTimestamp()).Date.ToString().IndexOf(" 12:")));
+            y_axis4.Add(defaultUniqueAccessesData[i].Count);
+        }
+
+        var datasets4 = new List<IChartDataset>();
+
+        var dataset4 = new BarChartDataset() {
+            Data = y_axis4, // numAccesses
+            BackgroundColor = new List<string> { "#56423e" }
+        };
+        datasets4.Add(dataset4);
+
+        chartData4 = new ChartData {
+            Labels = x_axis4,
+            Datasets = datasets4
+        };
+
+        barChartOptions4 = new();
+        barChartOptions4.Responsive = true;
+        barChartOptions4.Interaction = new Interaction { Mode = InteractionMode.X };
+        barChartOptions4.IndexAxis = "x";
+
+        barChartOptions4.Scales.X!.Title = new ChartAxesTitle { Text = "Door", Display = true };
+        barChartOptions4.Scales.Y!.Title = new ChartAxesTitle { Text = "Accesses", Display = true };
+
+        barChartOptions4.Plugins.Legend.Display = false;
+                
+        // INFO FIVE
+        for (int i=0; i<10; i++) {
+            x_axis5.Add(Shared.dict[defaultLongestInactivityData[i].doorID][0].GetDesc().Substring(22));
+            y_axis5.Add((defaultLongestInactivityData[i].gap.Days * 24) + (defaultLongestInactivityData[i].gap.Hours));
+        }
+
+        var datasets5 = new List<IChartDataset>();
+
+        var dataset5 = new BarChartDataset() {
+            Data = y_axis5, // numAccesses
+            BackgroundColor = new List<string> { "#56423e" }
+        };
+        datasets5.Add(dataset5);
+
+        chartData5 = new ChartData {
+            Labels = x_axis5,
+            Datasets = datasets5
+        };
+
+        barChartOptions5 = new();
+        barChartOptions5.Responsive = true;
+        barChartOptions5.Interaction = new Interaction { Mode = InteractionMode.X };
+        barChartOptions5.IndexAxis = "x";
+
+        barChartOptions5.Scales.X!.Title = new ChartAxesTitle { Text = "Door", Display = true };
+        barChartOptions5.Scales.Y!.Title = new ChartAxesTitle { Text = "Time Gap (Hours)", Display = true };
+
+        barChartOptions5.Plugins.Legend.Display = false;
+                
+        // INFO SIX
+        for (int i=0;i<10;i++) {
+            x_axis6.Add(Shared.dict[defaultTimerangesData[i].Item1][0].GetDesc().Substring(22));
+            y_axis6.Add(defaultTimerangesData[i].Item2);
+        }
+
+        var datasets6 = new List<IChartDataset>();
+
+        var dataset6 = new BarChartDataset() {
+            Data = y_axis6, // numAccesses
+            BackgroundColor = new List<string> { "#56423e" }
+        };
+        datasets6.Add(dataset6);
+
+        chartData6 = new ChartData {
+            Labels = x_axis6,
+            Datasets = datasets6
+        };
+
+        barChartOptions6 = new();
+        barChartOptions6.Responsive = true;
+        barChartOptions6.Interaction = new Interaction { Mode = InteractionMode.X };
+        barChartOptions6.IndexAxis = "x";
+
+        barChartOptions6.Scales.X!.Title = new ChartAxesTitle { Text = "Door", Display = true };
+        barChartOptions6.Scales.Y!.Title = new ChartAxesTitle { Text = "Accesses", Display = true };
+
+        barChartOptions6.Plugins.Legend.Display = false;
+        Console.WriteLine("ALL GRAPHS INITIALIZED");
+    }
+
+    // FUNCTIONS USED BY THE INIT HANDLERS
+    public Dictionary<(int door, DateTime day),List<ReaderEvent>> ProcessDictionaryUniqueAccesses(Dictionary<int, List<ReaderEvent>> dict) {
+        Dictionary<(int door, DateTime day),List<ReaderEvent>> tempDict = new();
+        List<ReaderEvent> tempList = new();
+
+        // loop through all doors in master dictionary, finding each unique combination of doorID and day
+        // and adding it as a key in the slave dictionary, with a list of the relevant readerevents as the value
+        foreach (KeyValuePair<int, List<ReaderEvent>> kvp in dict) {
+            foreach (ReaderEvent reader in kvp.Value) {
+                if (!tempDict.ContainsKey((kvp.Key, DateTime.Parse(reader.GetTimestamp()).Date))) {
+                    tempDict.Add( (kvp.Key, DateTime.Parse(reader.GetTimestamp()).Date), new List<ReaderEvent>() );
+                }
+                tempDict[ ( kvp.Key, DateTime.Parse(reader.GetTimestamp()).Date) ].Add(reader);
+            }
+        }
+
+        // loop through all unique keys in slave dictionary, overwriting the value with
+        // the results of calling ProcessList on that value. Dictionary values are read-only,
+        // so I'm using this weird workaround to achieve the same thing
+        foreach (KeyValuePair<(int,DateTime),List<ReaderEvent>> kvp in tempDict) {
+            tempList = ProcessListUniqueAccesses(kvp.Value);
+            kvp.Value.Clear();
+            foreach (ReaderEvent reader in tempList) { kvp.Value.Add(reader); }
+        }
+        return tempDict;
+    }
+
+    public List<ReaderEvent> ProcessListUniqueAccesses(List<ReaderEvent> list) {
+        // Sort list by id hash
+        list.Sort( (x,y) => String.Compare(x.GetHash(),y.GetHash()) );
+
+        // Remove duplicate hashes
+        var tempList = new List<ReaderEvent>();
+        tempList.Add(list[0]);
+        if (list.Count >= 2) {
+            for (int i=1; i<list.Count; i++) {
+                if (!list[i-1].GetHash().Equals(list[i].GetHash())) {
+                    tempList.Add(list[i]);
+                }
+            }
+        }
+        return tempList;
+    }
+
+    public List<DateTime> SortTimes(List<string> input) {
+        var output = new List<DateTime>();
+        foreach (string timestamp in input) {
+            output.Add(DateTime.Parse(timestamp));
+        }
+        output.Sort((x, y) => DateTime.Compare(x, y));
+
+        return output;
+    }
+
+    public List<LongestGap> FindLongestInactivity(Dictionary<int, List<DateTime>> dict) {
+        var list = new List<LongestGap>();
+        DateTime start;
+        DateTime end;
+        TimeSpan gap;
+        TimeSpan tempGap;
+        
+        foreach (KeyValuePair<int, List<DateTime>> kvp in dict) {
+            if (kvp.Value.Count >= 2) {
+                start = kvp.Value[0];
+                end = kvp.Value[1];
+                gap = end-start;
+                List<DateTime> dates = kvp.Value;
+                for (int i=1; i<dates.Count-1; i++) {
+                    tempGap = dates[i+1]-dates[i];
+                    if (tempGap > gap) {
+                        gap = tempGap;
+                        start = dates[i];
+                        end = dates[i+1];
+                    }
+                }
+                list.Add(new LongestGap(start, end, gap, kvp.Key));
+            }
+        }
+        list.Sort((x,y) => TimeSpan.Compare(y.gap,x.gap));
+        return list;
+    }
+
+    public int NumNotInRange(List<ReaderEvent> list) {
+        int num = 0;
+        foreach (ReaderEvent reader in list) {
+            // if after 5pm and before 9am num++;
+            TimeOnly eventTime = TimeOnly.FromDateTime(DateTime.Parse(reader.GetTimestamp()));
+            if (eventTime.CompareTo(defaultStartTime) > 0 && eventTime.CompareTo(defaultEndTime) < 0 ) {
+                num++;
+            }
+        }
+        return num;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chartsInitialized = false;
+        if (!chartsInitialized && barChart1 != null && chartData1 != null && barChartOptions1 != null)
+        {
+            // pass the plugin name to enable the data labels
+            await barChart1.InitializeAsync(chartData: chartData1, chartOptions: barChartOptions1, plugins: new string[] { "ChartDataLabels" });
+            await barChart2.InitializeAsync(chartData: chartData2, chartOptions: barChartOptions2, plugins: new string[] { "ChartDataLabels" });
+            await barChart3.InitializeAsync(chartData: chartData3, chartOptions: barChartOptions3, plugins: new string[] { "ChartDataLabels" });
+            await barChart4.InitializeAsync(chartData: chartData4, chartOptions: barChartOptions4, plugins: new string[] { "ChartDataLabels" });
+            await barChart5.InitializeAsync(chartData: chartData5, chartOptions: barChartOptions5, plugins: new string[] { "ChartDataLabels" });
+            await barChart6.InitializeAsync(chartData: chartData6, chartOptions: barChartOptions6, plugins: new string[] { "ChartDataLabels" });
+            chartsInitialized = true;
+
+        }
+        await base.OnAfterRenderAsync(firstRender);
     }
 }
