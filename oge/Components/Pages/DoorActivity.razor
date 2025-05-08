@@ -247,14 +247,4 @@ hr {
         await barChart.UpdateAsync(chartData: chartData, chartOptions: barChartOptions);
         StateHasChanged();
     }
-
-    private bool GetLocationFilter(int index)
-    {
-        return locationFilters[index];
-    }
-
-    private void SetLocationFilter(int index, bool value)
-    {
-        locationFilters[index] = value;
-    }
 }

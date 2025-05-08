@@ -22,9 +22,10 @@
                 <Accordion AlwaysOpen="true" Flush="true">
                     <AccordionItem Title="Location">
                         <Content>
-                            <CheckboxInput Label="Norman" @bind-Value="filter1option1" />
-                            <CheckboxInput Label="OKC" @bind-Value="filter1option2" />
-                            <CheckboxInput Label="Fort Smith" @bind-Value="filter1option3" />
+                           @for(int i=0; i<locations.Count; i++)
+                            {
+                                <CheckboxInput Label="@locations[i]" @bind-Value="locationFilters[i]" />
+                            } 
                         </Content>
                     </AccordionItem>
                     <AccordionItem Title="Graph Count">
@@ -36,8 +37,10 @@
                     </AccordionItem>
                     <AccordionItem Title="Users">
                         <Content>
-                            <CheckboxInput Label="101 GUARD SHACK PLANT ENTRY" @bind-Value="filter3option1" />
-                            <CheckboxInput Label="105 CNTRL RM SW DR" @bind-Value="filter3option2" />
+                            @for(int i=0; i<users.Count; i++)
+                            {
+                                <CheckboxInput Label="@users[i]" @bind-Value="userFilters[i]" />
+                            }
                         </Content>
                     </AccordionItem>
                     <AccordionItem Title="DateTime">
@@ -128,6 +131,8 @@ hr {
 @code {
     // DATA VARS
     Dictionary<(int door, DateTime day),List<ReaderEvent>> localDict;
+    List<string> locations = new List<string>();
+    List<string> users = new List<string>();
     List<List<ReaderEvent>> data = new();
     int numDoors {get; set;} = 10;
 
@@ -140,16 +145,13 @@ hr {
     private List<double?> y_axis = new();
 
     // FILTER VARS
-    private bool filter1option1 = false;
-    private bool filter1option2 = false;
-    private bool filter1option3 = false;
+    private List<bool> locationFilters = new List<bool>();
 
     private bool filter2option1 = false;
     private bool filter2option2 = true;
     private bool filter2option3 = false;
 
-    private bool filter3option1 = false;
-    private bool filter3option2 = false;
+    private List<bool> userFilters = new List<bool>();
 
     public void Init() {
         data.Clear();
@@ -157,6 +159,16 @@ hr {
         localDict = ProcessDictionary(Shared.dict);
         foreach (KeyValuePair<(int,DateTime),List<ReaderEvent>> kvp in localDict) {
             data.Add(kvp.Value);
+
+            if(locations.Contains(kvp.Value[0].GetName()) == false) {
+                locations.Add(kvp.Value[0].GetName());
+                locationFilters.Add(true);
+            }
+
+            if(users.Contains(kvp.Value[0].GetHash()) == false) {
+                users.Add(kvp.Value[0].GetHash());
+                userFilters.Add(true);
+            }
         }
         data.Sort( (x,y) => y.Count.CompareTo(x.Count) );
     }
