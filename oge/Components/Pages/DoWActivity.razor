@@ -28,13 +28,6 @@
                             }
                         </Content>
                     </AccordionItem>
-                    <AccordionItem Title="Graph Count">
-                        <Content>
-                            <RadioInput Name="count" Label="5" @bind-Value="filter2option1" />
-                            <RadioInput Name="count" Label="10" @bind-Value="filter2option2" />
-                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3" />
-                        </Content>
-                    </AccordionItem>
                     <AccordionItem Title="Users">
                         <Content>
                             @for(int i=0; i<users.Count; i++)
@@ -45,7 +38,7 @@
                     </AccordionItem>
                     <AccordionItem Title="DateTime">
                         <Content>
-
+                            
                         </Content>
                     </AccordionItem>
                 </Accordion>
