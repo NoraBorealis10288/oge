@@ -152,6 +152,9 @@ hr {
     private bool filter3option2 = false;
     // Initialize local dictionary with just the timestamp of each access, grouped by which door they were from
     public void Init() {
+        data = new List<LongestGap>();
+        times.Clear();
+        
         var templist = new List<string>();
         foreach (KeyValuePair<int,List<ReaderEvent>> kvp in Shared.dict) {
             templist.Clear();
