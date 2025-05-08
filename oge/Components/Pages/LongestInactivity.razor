@@ -9,27 +9,43 @@
 <div class="content">
     @if (Shared.uploadStatus.Equals("file")) {
         Init();
+        InitGraph();
+        
+        <div class="container" style="width: 100%;">
+            <div class="panel" style="width: 75%;">
+                <BarChart @ref="barChart" Width="800" Height="600" class="chart"/>
 
-        <h4>Top 10 Longest Gaps</h4>
+                <div class="description"><p>Diplays the most inactive doors by longest number of hours in between accesses</p></div>
+            </div>
 
-        <table>
-            <thead>
-                <th>Door</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Time (DD.HH:MM:SS)</th>
-            </thead>
-            <tbody>
-                @for (int i=0; i<10; i++) {
-                    <tr>
-                        <td>@Shared.dict[data[i].doorID][0].GetDesc().Substring(22)</td>
-                        <td>@data[i].start</td>
-                        <td>@data[i].end</td>
-                        <td>@data[i].gap</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            <div class="panel" style="width: 25%; margin-top: 5%;">
+                <Accordion AlwaysOpen="true" Flush="true">
+                    <AccordionItem Title="Location">
+                        <Content>
+                            @for(int i=0; i<locations.Count; i++)
+                            {
+                                <CheckboxInput Label="@locations[i]" @bind-Value="locationFilters[i]" />
+                            }
+                        </Content>
+                    </AccordionItem>
+                    <AccordionItem Title="Graph Count">
+                        <Content>
+                            <RadioInput Name="count" Label="5" @bind-Value="filter2option1" @onchange="RewriteGraph"/>
+                            <RadioInput Name="count" Label="10" @bind-Value="filter2option2" @onchange="RewriteGraph"/>
+                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3" @onchange="RewriteGraph"/>
+                        </Content>
+                    </AccordionItem>
+                    <AccordionItem Title="Users">
+                        <Content>
+                            @for(int i=0; i<users.Count; i++)
+                            {
+                                <CheckboxInput Label="@users[i]" @bind-Value="userFilters[i]" />
+                            }
+                        </Content>
+                    </AccordionItem>
+                </Accordion>
+            </div>
+        </div>
     }
 </div>
 
@@ -51,27 +67,95 @@ hr {
     text-align: center;
 }
 
-table, th, td {
-  border: 1px solid black;
+.container {
+    display: flex;
+    align-items: flex-start;
 }
 
-table {
-    width: 50%;
+.panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart {
+    margin-left: 10%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    display: inline-block;
+}
+
+.description {
+    width: 80%;
     margin: auto;
+    padding: 5%;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #4a9500;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
 }
 
-th {
-    background-color: #6b6c70;
-    color: #ffffff;
+.accordion-button, .accordion-body {
+    background-color: #fff4ee !important;
+}
+
+.accordion-button {
+    font-size: 20px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'%3E%3Cpath d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4'/%3E%3C/svg%3E");
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dash' viewBox='0 0 16 16'%3E%3Cpath d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8'/%3E%3C/svg%3E");
+}
+
+.accordion-button:not(.collapsed) {
+    color: inherit !important;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    outline: none;
 }
 
 </style>
 
 @code {
+    // DATA VARS
     Dictionary<int,List<DateTime>> times = new Dictionary<int, List<DateTime>>();
+    List<string> locations = new List<string>();
+    List<string> users = new List<string>();
     List<LongestGap> data;
+    int numDoors = 10;
+
+    // GRAPH VARS
+    private BarChart barChart = default!;
+    private BarChartOptions barChartOptions = default!;
+    private ChartData chartData = default!;
+
+    private List<string> x_axis = new();
+    private List<double?> y_axis = new();
+
+    // FILTER VARS
+    private List<bool> locationFilters = new List<bool>();
+
+    private bool filter2option1 = false;
+    private bool filter2option2 = true;
+    private bool filter2option3 = false;
+
+    private List<bool> userFilters = new List<bool>();
+
     // Initialize local dictionary with just the timestamp of each access, grouped by which door they were from
     public void Init() {
+        data = new List<LongestGap>();
+        times.Clear();
+        
         var templist = new List<string>();
         foreach (KeyValuePair<int,List<ReaderEvent>> kvp in Shared.dict) {
             templist.Clear();
@@ -79,6 +163,16 @@ th {
                 templist.Add(reader.GetTimestamp());
             }
             times.Add(kvp.Key,SortTimes(templist));
+            
+            if(locations.Contains(kvp.Value[0].GetName()) == false) {
+                locations.Add(kvp.Value[0].GetName());
+                locationFilters.Add(true);
+            }
+
+            if(users.Contains(kvp.Value[0].GetHash()) == false) {
+                users.Add(kvp.Value[0].GetHash());
+                userFilters.Add(true);
+            }
         }
         data = FindLongestInactivity(times);
     }
@@ -137,5 +231,66 @@ th {
         public override string ToString() {
             return ($"{doorID}: {start}-{end} && {gap}");
         }
+    }
+
+    public void InitGraph() {
+        x_axis.Clear();
+        y_axis.Clear();
+
+        int maxDoors = Math.Min(numDoors, data.Count);
+        for (int i=0; i<maxDoors; i++) {
+            x_axis.Add(Shared.dict[data[i].doorID][0].GetDesc().Substring(22));
+            y_axis.Add((data[i].gap.Days * 24) + (data[i].gap.Hours));
+        }
+
+        var datasets = new List<IChartDataset>();
+
+        var dataset = new BarChartDataset() {
+            Data = y_axis, // numAccesses
+            BackgroundColor = new List<string> { "#56423e" }
+        };
+        datasets.Add(dataset);
+
+        chartData = new ChartData {
+            Labels = x_axis,
+            Datasets = datasets
+        };
+
+        barChartOptions = new();
+        barChartOptions.Responsive = true;
+        barChartOptions.Interaction = new Interaction { Mode = InteractionMode.X };
+        barChartOptions.IndexAxis = "x";
+
+        barChartOptions.Scales.X!.Title = new ChartAxesTitle { Text = "Door", Display = true };
+        barChartOptions.Scales.Y!.Title = new ChartAxesTitle { Text = "Time Gap (Hours)", Display = true };
+
+        barChartOptions.Plugins.Legend.Display = false;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // pass the plugin name to enable the data labels
+            await barChart.InitializeAsync(chartData: chartData, chartOptions: barChartOptions, plugins: new string[] { "ChartDataLabels" });
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    // This Updates the data depending on the filters selected - Lai
+    public async Task RewriteGraph()
+    {
+        // 10 - 15 doesn't work but 5 - 15 does
+        if(filter2option1) { numDoors = 5; }
+        else if(filter2option2) { numDoors = 10; }
+        else if(filter2option3) { numDoors = 15; }
+
+        // Reset the data
+        Init();
+        InitGraph();
+
+        // Reinitialize the graph with the new data
+        await barChart.UpdateAsync(chartData: chartData, chartOptions: barChartOptions);
+        StateHasChanged();
     }
 }

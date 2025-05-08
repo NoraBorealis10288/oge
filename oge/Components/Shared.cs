@@ -7,6 +7,20 @@ public static class Shared {
     public static Dictionary<int,List<ReaderEvent>> dict = new Dictionary<int,List<ReaderEvent>>();
     public static List<ReaderEvent> fileList = new List<ReaderEvent>();
 
+    public static List<(int id,int numAccesses)> doorActivityData = new List<(int id,int numAccesses)>();
+    public static List<(string hash, int numAccesses)> userActivityData = new List<(string hash, int numAccesses)>();
+    public static SortedDictionary<int,List<ReaderEvent>> dowActivityData = new SortedDictionary<int, List<ReaderEvent>>();
+
+    public static int[] numUniqueDays = [0,0,0,0,0,0,0];
+    public static Dictionary<(int door, DateTime day),List<ReaderEvent>> localDict;
+    public static List<List<ReaderEvent>> uniqueAccessesData = new();
+    public static Dictionary<int,List<DateTime>> longestInactivityTimes = new Dictionary<int, List<DateTime>>();
+    public static List<LongestGap> longestInactivityData;
+    public static TimeOnly startTime;
+    public static TimeOnly endTime;
+    public static List<(int doorID, int numAccesses)> timerangesData = new();
+
+
     public static async Task FileUploadedAsync(Microsoft.AspNetCore.Components.Forms.IBrowserFile? file) {
         if (file != null) {
             try {
@@ -94,3 +108,21 @@ public class ReaderEvent {
         return $"{column1}, {column2}, {column3}, {column4}, {column5}, {column6}";
     }
 }
+
+public class LongestGap {
+        public DateTime start { get; }
+        public DateTime end { get; }
+        public TimeSpan gap { get; }
+        public int doorID { get; }
+
+        public LongestGap(DateTime start, DateTime end, TimeSpan gap, int doorID) {
+            this.start = start;
+            this.end = end;
+            this.gap = gap;
+            this.doorID = doorID;
+        }
+
+        public override string ToString() {
+            return ($"{doorID}: {start}-{end} && {gap}");
+        }
+    }
