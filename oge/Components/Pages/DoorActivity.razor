@@ -22,22 +22,25 @@
                 <Accordion AlwaysOpen="true" Flush="true">
                     <AccordionItem Title="Location">
                         <Content>
-                            <CheckboxInput Label="Norman" @bind-Value="filter1option1" />
-                            <CheckboxInput Label="OKC" @bind-Value="filter1option2" />
-                            <CheckboxInput Label="Fort Smith" @bind-Value="filter1option3" />
+                            @for(int i=0; i<locations.Count; i++)
+                            {
+                                <CheckboxInput Label="@locations[i]" @bind-Value="locationFilters[i]" />
+                            }
                         </Content>
                     </AccordionItem>
                     <AccordionItem Title="Graph Count">
                         <Content>
                             <RadioInput Name="count" Label="5" @bind-Value="filter2option1" @onchange="RewriteGraph"/>
                             <RadioInput Name="count" Label="10" @bind-Value="filter2option2" @onchange="RewriteGraph"/>
-                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3"/>
+                            <RadioInput Name="count" Label="15" @bind-Value="filter2option3" @onchange="RewriteGraph"/>
                         </Content>
                     </AccordionItem>
                     <AccordionItem Title="Users">
                         <Content>
-                            <CheckboxInput Label="101 GUARD SHACK PLANT ENTRY" @bind-Value="filter3option1" />
-                            <CheckboxInput Label="105 CNTRL RM SW DR" @bind-Value="filter3option2" />
+                            @for(int i=0; i<users.Count; i++)
+                            {
+                                <CheckboxInput Label="@users[i]" @bind-Value="userFilters[i]" />
+                            }
                         </Content>
                     </AccordionItem>
                     <AccordionItem Title="DateTime">
@@ -128,8 +131,8 @@ hr {
 @code {
     // DATA VARS
     List<(int id,int numAccesses)> data = new List<(int id,int numAccesses)>();
-    List<string> locations;
-    List<string> users;
+    List<string> locations = new List<string>();
+    List<string> users = new List<string>();
     int numDoors {get; set;} = 10;
 
     // GRAPH VARS
@@ -141,25 +144,32 @@ hr {
     private List<double?> y_axis = new();
 
     // FILTER VARS
-    private List<bool> locationFilters;
-    private bool filter1option1 = false;
-    private bool filter1option2 = false;
-    private bool filter1option3 = false;
+    private List<bool> locationFilters = new List<bool>();
 
     private bool filter2option1 = false;
     private bool filter2option2 = true;
     private bool filter2option3 = false;
 
-    private List<bool> userFilters;
-    private bool filter3option1 = false;
-    private bool filter3option2 = false;
+    private List<bool> userFilters = new List<bool>();
 
     // FUNCTIONS
     public void Init() {
         data.Clear();
         foreach (KeyValuePair<int,List<ReaderEvent>> kvp in Shared.dict) {
             data.Add((kvp.Key,kvp.Value.Count));
+            if(locations.Contains(kvp.Value[0].GetName()) == false) {
+                locations.Add(kvp.Value[0].GetName());
+                locationFilters.Add(true);
+            }
+
+            if(users.Contains(kvp.Value[0].GetHash()) == false) {
+                users.Add(kvp.Value[0].GetHash());
+                userFilters.Add(true);
+            }
         }
+
+        users.Sort();
+        locations.Sort();
 
         (int id,int numAccesses) temp;
         for (int j=0; j<=data.Count-2; j++)
@@ -236,5 +246,15 @@ hr {
         // Reinitialize the graph with the new data
         await barChart.UpdateAsync(chartData: chartData, chartOptions: barChartOptions);
         StateHasChanged();
+    }
+
+    private bool GetLocationFilter(int index)
+    {
+        return locationFilters[index];
+    }
+
+    private void SetLocationFilter(int index, bool value)
+    {
+        locationFilters[index] = value;
     }
 }
